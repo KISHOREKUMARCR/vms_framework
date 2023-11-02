@@ -55,62 +55,59 @@ color: #000;
             <!-- /Logo -->
             <h4 class="mb-2">VMS starts here 🚀</h4>
             <p class="mb-4">Make your app management easy and fun!</p>            
-            <form id="formAuthentication" class="mb-3" action="" method="POST">
-
-
-              <?php if ($this->session->flashdata('success')) {?>
-              <div class="alert alert-success">
-              <?php echo $this->session->flashdata('success'); ?>
-              </div>
-              <?php } ?>
-              
-              <?php if ($this->session->flashdata('error')) {?>
-              <div class="alert alert-danger">
-              <?php echo $this->session->flashdata('error'); ?>
-              </div>
-              <?php } ?>
-
-              <div class="mb-3">
-                <label for="username" class="form-label">Username</label><input type="text"class="form-control"id="username"name="username"placeholder="Enter your username"autofocus />
-              </div>
-              <div class="mb-3">
-                <label for="email" class="form-label">Email</label><input type="text" class="form-control" id="email" name="email" placeholder="Enter your email" />
-              </div>
-              <div class="mb-3 form-password-toggle">
-                <label class="form-label" for="password">Password</label>
-                <div class="input-group input-group-merge">
-                  <input type="password" id="password" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
-                  <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
-                </div>
-              </div>
-
-              <div class="mb-3 form-password-toggle">
-                <label class="form-label" for="password">Confirm Password</label>
-                <div class="input-group input-group-merge">
-                  <input type="password"  id="confirm-password"  class="form-control" name="confirm-password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"aria-describedby="confirm-password" />
-                  <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
-                </div>
-              </div>
-
-              <div class="mb-3 form-password-toggle">
-                <label class="form-label" for="password">Device Id</label>
-                <div class="input-group input-group-merge">
-                <input type="text" name="device_number" class="form-control" placeholder="Device Number" value="" />
-                </div>
-              </div>
-
-                <!-- <div class="mb-3">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="terms-conditions" name="terms" />
-                    <label class="form-check-label" for="terms-conditions">
-                      I agree to
-                      <a href="javascript:void(0);">privacy policy & terms</a>
-                    </label>
+            <form id="formAuthentication" class="mb-3" action="<?php echo base_url(); ?>register" method="POST">
+              <?php if ($this->session->flashdata('success')) { ?>
+                  <div class="alert alert-success" id="success-alert">
+                      <?php echo $this->session->flashdata('success'); ?>
                   </div>
-                </div> -->
-              
+              <?php } ?>
+              <?php if ($this->session->flashdata('error')) { ?>
+                  <div class="alert alert-danger"  id="error-alert">
+                      <?php echo $this->session->flashdata('error'); ?>
+                  </div>
+              <?php } ?>
+
+              <div class="mb-3">
+                  <label for="username" class="form-label">Username</label>
+                  <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" autofocus />
+                  <span class="error"><?php echo form_error('username'); ?></span>
+              </div>
+
+              <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email" />
+                  <span class="error"><?php echo form_error('email'); ?></span>
+              </div>
+
+              <div class="mb-3 form-password-toggle">
+                  <label class="form-label" for="password">Password</label>
+                  <div class="input-group input-group-merge">
+                      <input type="password" id="password" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
+                      <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                  </div>
+                  <span class="error"><?php echo form_error('password'); ?></span>
+              </div>
+
+              <div class="mb-3 form-password-toggle">
+                  <label class="form-label" for="confirm_password">Confirm Password</label>
+                  <div class="input-group input-group-merge">
+                      <input type="password" id="confirm_password" class="form-control" name="confirm_password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="confirm_password" />
+                      <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                  </div>
+                  <span class="error"><?php echo form_error('confirm_password'); ?></span>
+              </div>
+
+              <div class="mb-3 form-password-toggle">
+                  <label class="form-label" for="device_number">Device Id</label>
+                  <div class="input-group input-group-merge">
+                      <input type="text" name="device_number" class="form-control" placeholder="Device Number" value="" />
+                  </div>
+                  <span class="error"><?php echo form_error('device_number'); ?></span>
+              </div>
+
               <input type="submit" class="btn btn-primary d-grid w-100" name="signupSubmit" value="Sign up">
-            </form>
+          </form>
+
 
             <p class="text-center">
               <span>Already have an account?</span>
@@ -150,5 +147,12 @@ color: #000;
 <script src="<?php echo base_url();?>assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js"></script>
 <!-- <script src="<?php echo base_url();?>assets/js/main.js"></script> -->
 <script src="<?php echo base_url();?>assets/js/pages-auth.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+<script>
+ setTimeout(function () {
+        $('#success-alert').fadeOut('slow');
+        $('#error-alert').fadeOut('slow');
+    }, 5000); // 5000 milliseconds = 5 seconds
+</script>
 </html>

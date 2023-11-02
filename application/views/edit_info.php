@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,50 +41,31 @@
                   </ul>
 
                   <div class="card mb-4">
-                    <h5 class="card-header">Profile Details</h5>
-
-                    <!-- Account -->
-                    <form id="formAccountSettings" method="POST" action="" enctype="multipart/form-data">
+                   
+                    <!-- Ac count -->
+                    <form id="formAccountSettings" method="POST" action="<?php echo base_url();?>User/edit_info" enctype="multipart/form-data">
                     <div class="card-body">
-
-
-
-
-                    <?php
-                    if (isset($_SESSION['update_status'])) { ?>
-                    <div class="alert alert-success">
-                    <?php echo $_SESSION['update_status']; ?>
+                    <h5 class="card-header">Profile Details</h5>
+                    <?php if ($this->session->flashdata('success')) { ?>
+                    <div class="alert alert-success" id="success-alert">
+                    <?php echo $this->session->flashdata('success'); ?>
                     </div>
-                    <?php
-                    unset($_SESSION['update_status']); // Clear the session variable
-                    } ?>
-
+                    <?php } ?>
+                    <?php if ($this->session->flashdata('error')) { ?>
+                    <div class="alert alert-danger"  id="error-alert">
+                    <?php echo $this->session->flashdata('error'); ?>
+                    </div>
+                    <?php } ?>
                       <div class="d-flex align-items-start align-items-sm-center gap-4">
-
-                        <img
-                          src=" <?php echo base_url();?>assets/img/1.png"
-                    
-                          alt="user-avatar"
-                          class="d-block rounded"
-                          height="100"
-                          width="100"
-                          id="uploadedAvatar" />
+                        <img src="<?php echo base_url();?>assets/img/upload_image/<?php echo isset($vms_users_data['profile']) ? $vms_users_data['profile'] : ''; ?>" alt="user-avatar"class="d-block rounded"height="100"width="100"id="uploadedAvatar" />
+                        
                         <div class="button-wrapper">
                           <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
                             <span class="d-none d-sm-block">Upload new photo</span>
                             <i class="bx bx-upload d-block d-sm-none"></i>
-                            <input
-                              type="file"
-                              id="upload"
-                              class="account-file-input"
-                              hidden
-                              name="upload_img"
-                               />
+                            <input type="file" id="upload" class="account-file-input" hidden name="upload_img" />
                           </label>
-                          <button type="button" class="btn btn-label-secondary account-image-reset mb-4">
-                            <i class="bx bx-reset d-block d-sm-none"></i>
-                            <span class="d-none d-sm-block">Reset</span>
-                          </button>
+                         
 
                           <p class="mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
                         </div>
@@ -90,50 +73,28 @@
                     </div>
                     <hr class="my-0" />
                     <div class="card-body">
-
+  
                         <div class="row">
                         <h5 class="mb-3 font-weight-bold">User Details</h5>
                           <div class="mb-3 col-md-6">
                             <label for="firstName" class="form-label">User Name</label>
-                            <input
-                              class="form-control"
-                              type="text"
-                              id="firstName"
-                              name="username"
-                              value="<?php echo $client_name;?>"
-                              autofocus />
+                            <input class="form-control"type="text"id="firstName" name="username"value="<?php echo isset($vms_users_data['username']) ? $vms_users_data['username'] : ''; ?>"autofocus />
+                              <!-- <?php echo form_error('username', '<div class="text-danger">', '</div>'); ?> -->
                           </div>
-
+                          
 
                           <div class="mb-3 col-md-6">
                             <label for="lastName" class="form-label">Device Id</label>
-                            <input class="form-control" type="text" name="deviceid" id="lastName" value="<?php
-                                if ($client_device_number){
-
-                                  echo $client_device_number;
-                                }else{
-                                  echo"";
-                                }
-                                ?>" />
+                            <input class="form-control" type="text" name="deviceid" id="lastName" value="<?php echo isset($vms_users_data['device_number']) ? $vms_users_data['device_number'] : ''; ?>" />
+                            <?php echo form_error('deviceid', '<div class="text-danger">', '</div>'); ?>
                           </div>
 
 
 
                           <div class="mb-3 col-md-6">
                             <label for="email" class="form-label">E-mail</label>
-                            <input
-                              class="form-control"
-                              type="text"
-                              id="email"
-                              name="email"
-                              value=" <?php
-                                if ($client_email){
-                                  echo $client_email;
-                                }else{
-                                  echo"";
-                                }
-                                ?>"
-                              placeholder="demo@example.com" />
+                            <input class="form-control" type="text"id="email"name="email"value="<?php echo isset($vms_users_data['email']) ? $vms_users_data['email'] : ''; ?>" placeholder="demo@example.com" />
+                            <?php echo form_error('email', '<div class="text-danger">', '</div>'); ?>
                           </div>
 
 
@@ -142,65 +103,34 @@
                           <label class="form-label" for="phone-number-mask">Phone Number</label>
                           <div class="input-group">
                           <span class="input-group-text">IND (+91)</span>
-                          <input
-                          type="text"
-                          id="phoneNumber"
-                          name="phoneNumber1"
-                          class="form-control phone-number-mask"
-                          value="<?php if ($client_phone){echo $client_phone; }else{echo""; }?>"
-                          placeholder="" required/>
+                          <input  type="text"id="phone"name="phoneNumber1"class="form-control phone-number-mask" value="<?php echo isset($vms_users_data['phone']) ? $vms_users_data['phone'] : ''; ?>" />                          
                           </div>
+                          <?php echo form_error('phoneNumber1', '<div class="text-danger">', '</div>'); ?>
                           </div>
 
                           <div class="mb-3 col-md-6">
                             <label for="address" class="form-label">Address</label>
-                            <input type="text" class="form-control" id="address" name="address"  value="<?php
-                                if ($client_address){
-                                  echo $client_address;
-                                }else{
-                                  echo"";
-                                }
-                                ?>" placeholder="Address" required/>
+                            <input type="text" class="form-control" id="address" name="address"  value="<?php echo isset($vms_users_data['address']) ? $vms_users_data['address'] : ''; ?>" placeholder="Address" />
+                            <?php echo form_error('address', '<div class="text-danger">', '</div>'); ?>
                           </div>
 
 
 
                           <div class="mb-3 col-md-6">
                             <label for="state" class="form-label">State</label>
-                            <input class="form-control" type="text" id="state" name="state"  value="<?php
-                                if ($client_state){
-                                  echo $client_state;
-                                }else{
-                                  echo"";
-                                }
-                                ?>" placeholder="state" required/>
+                            <input class="form-control" type="text" id="state" name="state"  value="<?php echo isset($vms_users_data['state']) ? $vms_users_data['state'] : ''; ?>" placeholder="state" />
+                            <?php echo form_error('state', '<div class="text-danger">', '</div>'); ?>
                           </div>
 
                           <div class="mb-3 col-md-6">
                             <label for="zipCode" class="form-label">Zip Code</label>
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="zipCode"
-                              name="zipCode"
-                              placeholder="231465"
-                              value="<?php
-                                if ($client_zipcode){
-                                  echo $client_zipcode;
-                                }else{
-                                  echo"";
-                                }
-                                ?>"
-                              required
-                              maxlength="6" />
+                            <input type="text"class="form-control"id="zipCode"name="zipCode"placeholder="231465"value="<?php echo isset($vms_users_data['zipcode']) ? $vms_users_data['zipcode'] : ''; ?>" maxlength="6" />
+                            <?php echo form_error('zipCode', '<div class="text-danger">', '</div>'); ?>
                           </div>
+                          
                           <div class="mb-3 col-md-6">
                             <label class="form-label" for="country">Country</label>
-                            <select id="country" class="select2 form-select" name="country" >
-
-                              <option value="India" selected>India</option>
-
-                            </select>
+                            <select id="country" class="select2 form-select" name="country" ><option value="India" selected>India</option></select>
                           </div>
 
 
@@ -208,34 +138,19 @@
 
                           <div class="mb-3 col-md-6">
                             <label for="address" class="form-label"> Cloud Email Address:</label>
-                            <input type="text" class="form-control" id="google_drive_email" name="google_drive_email"  value="<?php
-                                if ($google_drive_email){
-                                  echo $google_drive_email;
-                                }else{
-                                  echo"";
-                                }
-                                ?>" placeholder="CLOUD EMAIL" required/>
+                            <input type="text" class="form-control" id="google_drive_email" name="google_drive_email"  value="<?php echo isset($vms_drive_data['google_drive_email']) ? $vms_drive_data['google_drive_email'] : ''; ?>" placeholder="CLOUD EMAIL" />
+                            <?php echo form_error('google_drive_email', '<div class="text-danger">', '</div>'); ?>
                           </div>
 
                           <div class="mb-3 col-md-6">
                             <label for="address" class="form-label">Cloud Email Password</label>
-                            <input type="text" class="form-control" id="google_drive_pass" name="google_drive_pass"  value="<?php
-                                if ($google_drive_pass){
-                                  echo $google_drive_pass;
-                                }else{
-                                  echo"";
-                                }
-                                ?>" placeholder="CLOUD PASSWORD" required/>
+                            <input type="text" class="form-control" id="google_drive_pass" name="google_drive_pass"  value="<?php echo isset($vms_drive_data['google_drive_pass']) ? $vms_drive_data['google_drive_pass'] : ''; ?>" placeholder="CLOUD PASSWORD" />
+                            <?php echo form_error('google_drive_pass', '<div class="text-danger">', '</div>'); ?>
                           </div>
                           <div class="mb-3 col-md-6">
                             <label for="address" class="form-label">Cloud Secret Key </label>
-                            <input type="text" class="form-control" id="google_drive_secretkey" name="google_drive_secretkey"  value="<?php
-                                if ($google_drive_secretkey){
-                                  echo $google_drive_secretkey;
-                                }else{
-                                  echo"";
-                                }
-                                ?>" placeholder="CLOUD SECRET KEY" required/>
+                            <input type="text" class="form-control" id="google_drive_secretkey" name="google_drive_secretkey"  value="<?php echo isset($vms_drive_data['google_secret_key']) ? $vms_drive_data['google_secret_key'] : ''; ?>" placeholder="CLOUD SECRET KEY" />
+                            <?php echo form_error('google_drive_secretkey', '<div class="text-danger">', '</div>'); ?>
                           </div>
 
                           <h5 class="mb-3 font-weight-bold">KIT   Detail's</h5>
@@ -243,24 +158,14 @@
 
                           <div class="mb-3 col-md-6">
                             <label for="address" class="form-label">KIT   SSID:</label>
-                            <input type="text" class="form-control" id="raspi_ssid" name="raspi_ssid"  value="<?php
-                                if ($raspi_ssid){
-                                  echo $raspi_ssid;
-                                }else{
-                                  echo"";
-                                }
-                                ?>" placeholder="KIT SSID" required/>
+                            <input type="text" class="form-control" id="raspi_ssid" name="raspi_ssid"  value="<?php echo isset($vms_drive_data['raspi_ssid']) ? $vms_drive_data['raspi_ssid'] : ''; ?>" placeholder="KIT SSID" />
+                            <?php echo form_error('raspi_ssid', '<div class="text-danger">', '</div>'); ?>
                           </div>
 
                           <div class="mb-3 col-md-6">
                             <label for="address" class="form-label">KIT   Password</label>
-                            <input type="text" class="form-control" id="raspi_pass" name="raspi_pass"  value="<?php
-                                if ($raspi_pass){
-                                  echo $raspi_pass;
-                                }else{
-                                  echo"";
-                                }
-                                ?>" placeholder="KIT PASSWORD" required/>
+                            <input type="text" class="form-control" id="raspi_pass" name="raspi_pass"  value="<?php echo isset($vms_drive_data['raspi_pass']) ? $vms_drive_data['raspi_pass'] : ''; ?>" placeholder="KIT PASSWORD" />
+                            <?php echo form_error('raspi_pass', '<div class="text-danger">', '</div>'); ?>
                           </div>
 
 
@@ -269,41 +174,25 @@
 
                           <div class="mb-3 col-md-6">
                             <label for="address" class="form-label">VNC Viewer Username:</label>
-                            <input type="text" class="form-control" id="vnc_username" name="vnc_username"  value="<?php
-                                if ($vnc_username){
-                                  echo $vnc_username;
-                                }else{
-                                  echo"";
-                                }
-                                ?>" placeholder="vnc_username" required/>
+                            <input type="text" class="form-control" id="vnc_username" name="vnc_username"  value="<?php echo isset($vms_drive_data['vnc_name']) ? $vms_drive_data['vnc_name'] : ''; ?>" placeholder="vnc_username" />
+                            <?php echo form_error('vnc_username', '<div class="text-danger">', '</div>'); ?>
                           </div>
 
                           <div class="mb-3 col-md-6">
                             <label for="address" class="form-label"> VNC Viewer Password:</label>
-                            <input type="text" class="form-control" id="vnc_pass " name="vnc_pass"  value="<?php
-                                if ($vnc_pass){
-                                  echo $vnc_pass;
-                                }else{
-                                  echo"";
-                                }
-                                ?>" placeholder="vnc_pass" required/>
+                            <input type="text" class="form-control" id="vnc_pass " name="vnc_pass"  value="<?php echo isset($vms_drive_data['vnc_password']) ? $vms_drive_data['vnc_password'] : ''; ?>" placeholder="vnc_pass" />
+                            <?php echo form_error('vnc_pass', '<div class="text-danger">', '</div>'); ?>
                           </div>
-
-
-
-
-
-
 
                         </div>
 
                         <div class="mt-2">
 
                           <input type="submit" class="btn btn-primary me-2">
-                          <button type="reset" class="btn btn-label-secondary">Cancel</button>
                         </div>
-                      </form>
+                      
                     </div>
+                    </form>
                     <!-- /Account -->
                   </div>
 

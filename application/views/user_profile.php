@@ -41,20 +41,17 @@
                     </div>
                     <div class="user-profile-header d-flex flex-column flex-sm-row text-sm-start text-center mb-4">
                       <div class="flex-shrink-0 mt-n2 mx-sm-0 mx-auto">
-                        <img
-                        src=" <?php echo base_url();?>assets/img/1.png"
-                          alt="user image"
-                          class="d-block h-auto ms-0 ms-sm-4 rounded-3 user-profile-img" />
+                        <img src="<?php echo base_url();?>assets/img/upload_image/<?php echo isset($vms_users_data['profile']) ? $vms_users_data['profile'] : ''; ?>"alt="user image"class="d-block h-auto ms-0 ms-sm-4 rounded-3 user-profile-img" />
                       </div>
                       <div class="flex-grow-1 mt-3 mt-sm-5">
                         <div
                           class="d-flex align-items-md-end align-items-sm-start align-items-center justify-content-md-between justify-content-start mx-4 flex-md-row flex-column gap-4">
                           <div class="user-profile-info">
-                            <h4><?php echo "kishore";?></h4>
+                            <h4><?php echo isset($vms_users_data['username']) ? $vms_users_data['username'] : ''; ?></h4>
                             <ul class="list-inline mb-0 d-flex align-items-center flex-wrap justify-content-sm-start justify-content-center gap-2">
             
                               <li class="list-inline-item fw-semibold">
-                                <i class="bx bx-calendar-alt"></i> Joined <?php echo  "asfd";?>
+                                <i class="bx bx-calendar-alt"></i> Joined <?php echo isset($vms_users_data['time']) ? $vms_users_data['time'] : ''; ?>
                               </li>
                             </ul>
                           </div>
@@ -91,32 +88,32 @@
                       <ul class="list-unstyled mb-4 mt-3">
                         <li class="d-flex align-items-center mb-3">
                           <i class="bx bx-user"></i><span class="fw-semibold mx-2">Full Name:</span>
-                          <span><?php echo  "asfd";?></span>
+                          <span><?php echo isset($vms_users_data['username']) ? $vms_users_data['username'] : ''; ?></span>
                         </li>
                         <li class="d-flex align-items-center mb-3">
                           <i class="bx bx-check"></i><span class="fw-semibold mx-2">Device Status:</span> <span>Active</span>
                         </li>
                         <li class="d-flex align-items-center mb-3">
-                          <i class="bx bx-star"></i><span class="fw-semibold mx-2">Device ID:</span> <span><?php echo "asfd";?></span>
+                          <i class="bx bx-star"></i><span class="fw-semibold mx-2">Device ID:</span> <span><?php echo isset($vms_users_data['device_number']) ? $vms_users_data['device_number'] : ''; ?></span>
                         </li>
                         <li class="d-flex align-items-center mb-3">
-                          <i class="bx bx-flag"></i><span class="fw-semibold mx-2">Country:</span> <span><?php echo  "asfd";?></span>
+                          <i class="bx bx-flag"></i><span class="fw-semibold mx-2">Country:</span> <span><?php echo isset($vms_users_data['country']) ? $vms_users_data['country'] : ''; ?></span>
                         </li>
                         <li class="d-flex align-items-center mb-3">
                           <i class="bx bx-detail"></i><span class="fw-semibold mx-2">State:</span>
-                          <span><?php echo  "asfd";?></span>
+                          <span><?php echo isset($vms_users_data['state']) ? $vms_users_data['state'] : ''; ?></span>
                         </li>
                       </ul>
                       <small class="text-muted text-uppercase">Contacts</small>
                       <ul class="list-unstyled mb-4 mt-3">
                         <li class="d-flex align-items-center mb-3">
                           <i class="bx bx-phone"></i><span class="fw-semibold mx-2">Contact:</span>
-                          <span><?php echo  "asfd";?></span>
+                          <span><?php echo isset($vms_users_data['phone']) ? $vms_users_data['phone'] : ''; ?></span>
                         </li>
                        
                         <li class="d-flex align-items-center mb-3">
                           <i class="bx bx-envelope"></i><span class="fw-semibold mx-2">Email:</span>
-                          <span><?php echo "asfd";?></span>
+                          <span><?php echo isset($vms_users_data['email']) ? $vms_users_data['email'] : ''; ?></span>
                         </li>
                       </ul>
                      
@@ -142,9 +139,9 @@
                             <div class="timeline-header mb-1">
                               <h6 class="mb-0">Google Drive Detail's:</h6>                            
                             </div>
-                            <p class="mb-2">Mail Id:  <span class="fw-semibold mx-2"><?php echo  "asfd";?></span></p>
+                            <p class="mb-2">Mail Id:  <span class="fw-semibold mx-2"><?php echo isset($vms_drive_data['google_drive_email']) ? $vms_drive_data['google_drive_email'] : ''; ?></span></p>
                             <p class="mb-2">Mail password: <span class="fw-semibold mx-2"><?php echo "*********";?></span></p>
-                            <p class="mb-2">Mail Secret Key: <span class="fw-semibold mx-2"><?php echo  "asfd";?></span></p>
+                            <p class="mb-2">Mail Secret Key: <span class="fw-semibold mx-2"><?php echo isset($vms_drive_data['google_secret_key']) ? $vms_drive_data['google_secret_key'] : ''; ?></span></p>
                           </div>
                         </li>
 
@@ -156,7 +153,7 @@
                             <div class="timeline-header mb-1">
                               <h6 class="mb-0">Rasbperry PI Details:</h6>                              
                             </div>    
-                            <p class="mb-2">SSID:  <span class="fw-semibold mx-2"><?php echo "asfd";?></span></p>
+                            <p class="mb-2">SSID:  <span class="fw-semibold mx-2"><?php echo isset($vms_drive_data['raspi_ssid']) ? $vms_drive_data['raspi_ssid'] : ''; ?></span></p>
                             <p class="mb-2">RASPI Password:   <span class="fw-semibold mx-2"><?php echo "*********";?></span></p>                      
                           </div>
                         </li>
@@ -168,8 +165,8 @@
                             <div class="timeline-header mb-1">
                               <h6 class="mb-0">VNC Viewer Details:</h6>                              
                             </div>
-                            <p class="mb-2">VNC Username:          <span class="fw-semibold mx-2"><?php echo "asfd";?></span></p> 
-                            <p class="mb-2">VNC Password:          <span class="fw-semibold mx-2"><?php echo  "asfd";?></span></p>    
+                            <p class="mb-2">VNC Username: <span class="fw-semibold mx-2"><?php echo isset($vms_drive_data['vnc_name']) ? $vms_drive_data['vnc_name'] : ''; ?></span></p> 
+                            <p class="mb-2">VNC Password:<span class="fw-semibold mx-2"><?php echo isset($vms_drive_data['vnc_password']) ? $vms_drive_data['vnc_password'] : ''; ?></span></p>    
                           </div>
                         </li>                        
                         <li class="timeline-end-indicator">
