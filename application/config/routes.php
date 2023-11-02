@@ -59,7 +59,9 @@ $route['live_view']='User/live_view';
 $route['report']='User/report';
 $route['edit_info']='User/edit_info';
 $route['user_profile']='User/user_profile';
+$route['logout']='User/logout';
 
 $route['admin']='Admin';
 $route['admin_userlist']='Admin/userlist';
 $route['admin_edituser']='Admin/edituser';
+$route['admin_edituser/(:num)']="Admin/edituser/$1";
