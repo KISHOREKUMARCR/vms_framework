@@ -31,7 +31,7 @@
               <h4 class="py-3 breadcrumb-wrapper mb-4"><span class="text-muted fw-light">Traffic Video /</span> Live View</h4>
               <div>
                 <h3 >After clicking, wait for 2 seconds</h3>
-                <form method="post" action="liveview.php">
+                <form method="post" action="<?php echo base_url();?>live_view">
                   <input type="submit"  class="btn btn-primary  mb-4" name="switch_status" value="Capture" />
                   <img src="<?php echo base_url();?>assets/Real_capture/websocket_live.jpeg"   id="liveVideo" width="100%" height="650px" />
                 </form>
@@ -46,9 +46,6 @@
 </div>
 </body>
     <script src="<?php echo base_url();?>assets/vendor/js/helpers.js"></script>
-    <!-- <script src="<?php echo base_url();?>assets/vendor/js/template-customizer.js"></script>
-    <script src="<?php echo base_url();?>assets/js/config.js"></script>
-    <script src="<?php echo base_url();?>assets/js/main.js"></script> -->
     <script src="<?php echo base_url();?>assets/vendor/libs/jquery/jquery.js"></script>
     <script src="<?php echo base_url();?>assets/vendor/libs/popper/popper.js"></script>
     <script src="<?php echo base_url();?>assets/vendor/js/bootstrap.js"></script>
@@ -60,6 +57,6 @@
     <script src="<?php echo base_url();?>assets/vendor/libs/formvalidation/dist/js/FormValidation.min.js"></script>
     <script src="<?php echo base_url();?>assets/vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js"></script>
     <script src="<?php echo base_url();?>assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js"></script>
-    
+
     <script src="<?php echo base_url();?>assets/js/pages-auth.js"></script>
 </html>

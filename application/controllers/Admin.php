@@ -1,16 +1,16 @@
-<?php 
+<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Admin extends CI_Controller{
 
-    function __construct() { 
-        parent::__construct(); 
-        $this->load->model('Admin_model');   
-        $this->load->model('User_model');   
-        $this->load->library('session');   
+    function __construct() {
+        parent::__construct();
+        $this->load->model('Admin_model');
+        $this->load->model('User_model');
+        $this->load->library('session');
         $this->load->library('upload');
-        $this->load->library('form_validation');  
-    } 
+        $this->load->library('form_validation');
+    }
 
 
     public function index(){
@@ -30,11 +30,11 @@ class Admin extends CI_Controller{
             $result = $this->Admin_model->check_login($login_data);
             if ($result['status'] === TRUE)
             {
-                $user_data = $result['data'];             
+                $user_data = $result['data'];
                 $this->session->set_userdata('user_data', $user_data);
                 redirect('admin_userlist');
             }
-            else{                
+            else{
                 $this->session->set_flashdata('login_error', 'Invalid email or password.');
                 $this->load->view('admin_login');
             }
@@ -45,19 +45,19 @@ class Admin extends CI_Controller{
 
 
     public function userlist(){
-        $data['users'] = $this->Admin_model->get_user_details();          
+        $data['users'] = $this->Admin_model->get_user_details();
         $this->load->view('admin_userlist',$data);
     }
 
     public function edituser($id=''){
-        $client_id = $this->input->get('id'); 
+        $client_id = $this->input->get('id');
         $vms_drive_data = $this->User_model->getVmsDriveData($client_id);
         $vms_users_data = $this->User_model->getVmsUsersData($client_id);
         $all_data = array(
         'vms_drive_data' => $vms_drive_data,
         'vms_users_data' => $vms_users_data
         );
-        
+
         $drive_data = array(
             'client_id'=>$client_id ,
             'google_drive_email' => $this->input->post('google_drive_email'),
@@ -66,23 +66,23 @@ class Admin extends CI_Controller{
             'cloud_folder_id'=>$this->input->post('google_drive_folderid'),
             'cloud_servicekey_path'=>$this->input->post('google_drive_servicejson'),
             'raspi_ssid' => $this->input->post('raspi_ssid'),
-            'raspi_pass' => $this->input->post('raspi_pass'), 
+            'raspi_pass' => $this->input->post('raspi_pass'),
             'vnc_name' => $this->input->post('vnc_username'),
             'vnc_password' => $this->input->post('vnc_pass')
             );
         $upload_directory = 'assets/img/upload_image/';
         $upload_path = base_url($upload_directory);
-        
+
         $config['upload_path'] = './' . $upload_directory;
         $config['allowed_types'] = 'jpg|jpeg|png|gif';
         $config['max_size'] = 800;
 
         $this->upload->initialize($config);
-        
+
         if ($this->upload->do_upload('upload_img')) {
         $upload_data = $this->upload->data();
         $data['uploaded_image'] = $upload_data['file_name'];
-        $image_url = $upload_path . $data['uploaded_image'];                
+        $image_url = $upload_path . $data['uploaded_image'];
         }
         $user_data = array(
         'username' => $this->input->post('username'),
@@ -110,10 +110,13 @@ class Admin extends CI_Controller{
         'vms_drive_data' => $vms_drive_data,
         'vms_users_data' => $vms_users_data,
         );
-        
-       
+
+
         $this->load->view('admin_edituser',$all_data);
     }
+
+
+    
     public function logout(){
         redirect('admin');
     }

@@ -198,13 +198,31 @@ class User extends CI_Controller{
 
     }
 
-    public function live_view(){
-        $this->load->view('live_alive');
-    }
+
     public function report(){
-        $this->load->view('report');
+        $user_data = $this->session->userdata('user_data');
+        $client_id = $user_data->id;
+        $client_kitid=$user_data->device_number;
+
+        $vms_users_data = $this->User_model->getVmsUsersData($client_id);
+        $user_cloud_data=$this->User_model->getcloudReport($client_kitid);
+
+        $all_data = array(
+        'vms_users_data' => $vms_users_data,
+        'user_cloud_data'=>$user_cloud_data
+        );
+        $this->load->view('report',$all_data);
     }
 
+
+    public function live_view(){
+        $user_data = $this->session->userdata('user_data');
+        $client_kitid=$user_data->device_number;
+        $switch_status=$this->input->post('switch_status');
+        $switch_data = array('live_switch' => $switch_status);
+        $this->User_model->UpdateSwitch($client_kitid, $switch_data);
+        $this->load->view('live_alive');
+    }
 
     public function logout(){
         $this->load->view('user_login');

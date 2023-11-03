@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="<?php echo base_url();?>assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css" />
     <link rel="stylesheet" href="<?php echo base_url();?>assets/vendor/libs/flatpickr/flatpickr.css" />
     <link rel="stylesheet" href="<?php echo base_url();?>assets/vendor/libs/datatables-rowgroup-bs5/rowgroup.bootstrap5.css" />
-    
+
     <link rel="stylesheet" href=" https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" href=" https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -46,10 +46,11 @@
 
                 <div class="card">
                 <div class="card-datatable table-responsive pt-0">
-                 
+
                     <table class="datatables-basic table table-bordered mb-2" id="example" class="display">
                     <thead>
                     <tr>
+
                     <th>SNO</th>
                     <th>File Name</th>
                     <th>Start Time</th>
@@ -59,15 +60,54 @@
                     </tr>
                     </thead>
                     <tbody >
+                    <?php    $k = 0; foreach ($user_cloud_data as $user_cloud_data){ ?>
                       <tr>
-                          <td><?php echo "SDF" ?></td>
-                          <td><?php echo "SDF"; ?></td>
-                          <td><?php echo "SDF"; ?></td>
+                          <td><?php echo $user_cloud_data['id']; ?></td>
+                          <td><?php echo $user_cloud_data['file_name']; ?></td>
+                          <td><?php echo $user_cloud_data['start_time']; ?></td>
                           <td><span class="badge rounded-pill bg-label-success" >Completed</td>
-                          <td>ASDFASDF</td>
-                          <td>ASDF</td>
+                            <td>
+
+
+                            <a href="#" data-toggle="modal" data-target="#videoModal<?php echo $k; ?>" class="btn btn-light">
+                            <span><i class="fa fa-play-circle" style="font-size:20px;color:red"></i>  Watch</span>
+                            </a>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="videoModal<?php echo $k; ?>" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+
+                            <div class="modal-header">
+                            <a href="#" class="app-brand-link">
+                            <img src="http://localhost/vms/images/cosai.png" width="50" height="50">
+                            <span class="app-brand-text demo menu-text fw-bold ms-2">COS AI</span>
+                            <h5 class="modal-title text-center"  style="margin-left: 100px;font-size: x-large;font-style: italic;color: darkorange;" id="videoModalLabel"><?php echo $user_cloud_data['start_time']; ?></h5>
+                            </a>
+
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                            <div class="modal-body" style="padding: 1;">
+
+
+                            <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" src="<?php echo $user_cloud_data['file_url']; ?>" frameborder="0" allowfullscreen></iframe>
+                            </div>
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+
+                            <td>
+                            <a class="btn btn-primary" style="background-color: #dd4b39;"href="mailto:?subject=Check out this video&body=Here's the link to the video on Google Drive: <?php echo $user_cloud_data['file_url']; ?>" role="button">
+                            <i class="fas fa-share"></i></a>  </td>
                       </tr>
-                    
+                        <?php    $k = $k+1; } ?>
                     </tbody>
                     </table>
 
@@ -100,7 +140,7 @@
 
     <script src="<?php echo base_url();?>assets/vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js"></script>
     <script src="<?php echo base_url();?>assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js"></script>
-    
+
     <script src="<?php echo base_url();?>assets/js/pages-auth.js"></script>
     <script src="<?php echo base_url();?>assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js"></script>
     <script src="<?php echo base_url();?>assets/vendor/libs/moment/moment.js"></script>
@@ -151,5 +191,3 @@
 
 </script>
 </html>
-
-

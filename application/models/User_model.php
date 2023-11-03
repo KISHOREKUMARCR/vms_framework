@@ -12,12 +12,22 @@ class User_model extends CI_Model {
         $query = $this->db->insert('vms_users',$userData);
         return $query;
     }
+    public function CloudDataInsert($cloud_data){
+      $query =$this->db->insert('cloud_file',$cloud_data);
+      return $query;
+    }
     public function checkEmailExists($email){
         $this->db->where('email',$email);
         $query=$this->db->get('vms_users');
         return $query->num_rows() > 0;
     }
 
+    public function cloudfileExist($file_id){
+      $this->db->where('file_id',$file_id);
+      $query=$this->db->get('cloud_file');
+      return $query->num_rows();
+
+    }
     public function saveOrUpdateDriveData($client_id, $drive_data) {
         $existing_data = $this->getDriveData($client_id);
 
@@ -40,6 +50,11 @@ class User_model extends CI_Model {
         return $query;
     }
 
+    public function UpdateSwitch($client_kitid, $switch_data){
+      $this->db->where('device_number',$client_kitid);
+      $query=$this->db->update('vms_users',$switch_data);
+      return $query;
+    }
     public function getVmsDriveData($client_id){
         $this->db->select('*');
         $this->db->from('vms_drive');
@@ -56,6 +71,14 @@ class User_model extends CI_Model {
        return $query->row_array();
    }
 
+   public function getCloudReport($user_kitid) {
+      $this->db->select("*");
+      $this->db->from('cloud_file'); // Use 'from' to specify the table
+      $this->db->where('KIT_ID', $user_kitid);
+      $this->db->order_by("id", "desc");
+      $query = $this->db->get(); // Execute the query
+      return $query->result_array(); // Return the results as an array
+    }
 
     public function getVmsUsersData($client_id){
         $this->db->select('*');

@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+
 class Api extends CI_Controller{
 
         function __construct() {
@@ -46,7 +47,7 @@ class Api extends CI_Controller{
                               'disk_usage_percentage' => $requestBody['Disk']['Usage Percentage'],
                               'disk_space_used' => $requestBody['Disk']['Disk Space Used'],
                               'available_disk_space' => $requestBody['Disk']['Available Disk Space'],
-                              'total_disk_space' => $requestBody['Disk']['Total Disk Space'],                              
+                              'total_disk_space' => $requestBody['Disk']['Total Disk Space'],
                               'kit_status' => $requestBody['kit_status'],
                               'total_memory_gb' => $requestBody['Drive_momory']['drive_total_space_gb'],
                               'free_memory_gb' => $requestBody['Drive_momory']['drive_free_space_gb'],
