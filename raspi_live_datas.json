@@ -1,0 +1,41 @@
+{
+    "System Info": {
+        "hostname": "raspberrypi",
+        "server_address": "10.0.0.152",
+        "server_port": 80
+    },
+    "CPU": {
+        "Usage Percentage": 7,
+        "Number of Cores": 4,
+        "CPU Frequency": 1500,
+        "CPU Frequency_khz": 1500,
+        "CPU Temperature": 54.043
+    },
+    "Memory": {
+        "Usage Percentage": 83.08098146961656,
+        "Total Memory": 3.6556930541992188,
+        "Used Memory": 0.48772430419921875,
+        "Free Memory": 3.0371856689453125
+    },
+    "Disk": {
+        "Usage Percentage": "42.5",
+        "Disk Space Used": "22.7",
+        "Available Disk Space": "30.68",
+        "Total Disk Space": "56.27"
+    },
+    "Drive_momory": {
+        "drive_total_space_gb": "15.00",
+        "drive_free_space_gb": "4.50",
+        "drive_used_space_gb": "10.50",
+        "drive_free_space_percentage": "30.02"
+    },
+    "Hardware_status": "Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub\nBus 001 Device 003: ID 0781:5567 SanDisk Corp. Cruzer Blade\nBus 001 Device 002: ID 2109:3431 VIA Labs, Inc. Hub\nBus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub\n",
+    "kit_status": true,
+    "kit_id": "COSAI_VMS_439",
+    "Memory_status": {
+        "memtotal": "3.7Gi",
+        "memused": "499Mi",
+        "memfree": "1.7Gi",
+        "memavailable": "3.0Gi"
+    }
+}
