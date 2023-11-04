@@ -107,6 +107,14 @@ class User_model extends CI_Model {
             return ['status' => FALSE,'data' => FALSE];
         }
     }
+
+    public function GetSwitchStatus($user_kitid){
+          $this->db->select('live_switch');
+          $this->db->from('vms_users');
+          $this->db->where('device_number', $user_kitid);
+          $query = $this->db->get();
+          return $query->row_array();
+    }
 }
 
 ?>

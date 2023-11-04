@@ -26,8 +26,6 @@ $diskSpaceUsed = $users_raspidata["disk_space_used"];
 $availableDiskSpace = $users_raspidata["available_disk_space"];
 $totalDiskSpace = $users_raspidata["total_disk_space"];
 $kit_status = $users_raspidata["kit_status"];
-$total_memory_gb = $users_raspidata["total_memory_gb"];
-$free_memory_gb = $users_raspidata["free_memory_gb"];
 $drive_total_space_gb = $users_raspidata["drive_total_space_gb"];
 $drive_free_space_gb = $users_raspidata["drive_free_space_gb"];
 $drive_used_space_gb = $users_raspidata["drive_used_space_gb"];
@@ -40,7 +38,7 @@ $drive_free_space_percentage = $users_raspidata["drive_free_space_percentage"];
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 <title>VMS</title>
 <meta name="description" content="" />
-<meta http-equiv="refresh" content="60">
+<meta http-equiv="refresh" content="30">
 <link rel="icon" type="image/x-icon" href="<?php echo base_url();?>assets/img/cosai.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -93,21 +91,21 @@ float:inline-end;
                     <div class="card-body">
 
 
-  <?php
-date_default_timezone_set('Asia/Kolkata');
-$lastModificationTimestamp = strtotime($update_time);
-$currentTimestamp = time();
-$timeDifference = $currentTimestamp - $lastModificationTimestamp;
-$powerOffThreshold = 1 * 60;
+                            <?php
+                          date_default_timezone_set('Asia/Kolkata');
+                          $lastModificationTimestamp = strtotime($update_time);
+                          $currentTimestamp = time();
+                          $timeDifference = $currentTimestamp - $lastModificationTimestamp;
+                          $powerOffThreshold = 1 * 60;
 
-if ($timeDifference >= $powerOffThreshold) {
-$kit_live_status=0;//power is off
-echo '<button type="button" class="  rounded-button-01 mb-0 btn btn-danger"><span style="font-size: 20px;">POWER OFF</span></button>';
-} else {
-$kit_live_status=1; //poweris on
-echo '<button type="button" class="  rounded-button-01 mb-0 btn btn-success"><span style="font-size: 23px;">ACTIVE</span></button>';
-}
-?>
+                          if ($timeDifference >= $powerOffThreshold) {
+                          $kit_live_status=0;//power is off
+                          echo '<button type="button" class="  rounded-button-01 mb-0 btn btn-danger"><span style="font-size: 20px;">POWER OFF</span></button>';
+                          } else {
+                          $kit_live_status=1; //poweris on
+                          echo '<button type="button" class="  rounded-button-01 mb-0 btn btn-success"><span style="font-size: 23px;">ACTIVE</span></button>';
+                          }
+                          ?>
 
 
 

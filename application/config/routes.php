@@ -67,7 +67,7 @@ $route['admin_edituser']='Admin/edituser';
 $route['admin_edituser/(:num)']="Admin/edituser/$1";
 
 $route['api/postdata']='api/postdata';
-$route['api/get_stream']='api/get_stream';
-$route['api/get_streaming_img']='api/get_streaming_img';
+
+$route['frames/get_stream']='frames/get_stream';
 
 $route['cloud_info']='Cloudfile';
