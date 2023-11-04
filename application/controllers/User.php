@@ -225,7 +225,9 @@ class User extends CI_Controller{
     }
 
     public function logout(){
-        $this->load->view('user_login');
+        $this->session->sess_destroy();
+        $this->session->unset_userdata('user_data');
+        redirect('User');
     }
 }
 

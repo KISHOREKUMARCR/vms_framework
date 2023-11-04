@@ -1,5 +1,6 @@
 <?php
 $client_name=$users_data["username"];
+
 $client_email=$users_data["email"];
 $client_device_number=$users_data["device_number"];
 $client_phone=$users_data["phone"];
@@ -73,7 +74,6 @@ float:inline-end;
         <?php include('main_aside.php');?>
 
         <div class="layout-page">
-
           <?php include('side_nav.php');?>
 
           <div class="content-wrapper">
@@ -90,24 +90,21 @@ float:inline-end;
                     </div>
                     <div class="card-body">
 
+                      <?php
+                    date_default_timezone_set('Asia/Kolkata');
+                    $lastModificationTimestamp = strtotime($update_time);
+                    $currentTimestamp = time();
+                    $timeDifference = $currentTimestamp - $lastModificationTimestamp;
+                    $powerOffThreshold = 1 * 60;
 
-                            <?php
-                          date_default_timezone_set('Asia/Kolkata');
-                          $lastModificationTimestamp = strtotime($update_time);
-                          $currentTimestamp = time();
-                          $timeDifference = $currentTimestamp - $lastModificationTimestamp;
-                          $powerOffThreshold = 1 * 60;
-
-                          if ($timeDifference >= $powerOffThreshold) {
-                          $kit_live_status=0;//power is off
-                          echo '<button type="button" class="  rounded-button-01 mb-0 btn btn-danger"><span style="font-size: 20px;">POWER OFF</span></button>';
-                          } else {
-                          $kit_live_status=1; //poweris on
-                          echo '<button type="button" class="  rounded-button-01 mb-0 btn btn-success"><span style="font-size: 23px;">ACTIVE</span></button>';
-                          }
-                          ?>
-
-
+                    if ($timeDifference >= $powerOffThreshold) {
+                    $kit_live_status=0;//power is off
+                    echo '<button type="button" class="  rounded-button-01 mb-0 btn btn-danger"><span style="font-size: 20px;">POWER OFF</span></button>';
+                    } else {
+                    $kit_live_status=1; //poweris on
+                    echo '<button type="button" class="  rounded-button-01 mb-0 btn btn-success"><span style="font-size: 23px;">ACTIVE</span></button>';
+                    }
+                    ?>
 
                       <ul class="p-0 m-5">
                       <li class="mb-3 d-flex justify-content-between">
@@ -131,7 +128,6 @@ float:inline-end;
                       </li>
 
 
-
                       <li class="mb-3 d-flex justify-content-between">
                       <div class="d-flex align-items-center lh-1 me-3">
                       <span class="badge badge-dot bg-info me-2"></span> Device Id
@@ -141,11 +137,6 @@ float:inline-end;
                       <span class="fw-semibold"><?php echo $client_device_number;?></span>
                       </div>
                       </li>
-
-
-
-
-
 
                       <li class="mb-3 d-flex justify-content-between">
                       <div class="d-flex align-items-center lh-1 me-3">
@@ -165,9 +156,6 @@ float:inline-end;
                       <span class="fw-semibold"><?php echo $serverPort;?></span>
                       </div>
                       </li>
-
-
-
                       </ul>
                     </div>
                   </div>
@@ -186,7 +174,7 @@ float:inline-end;
                           <div id="growthRadialChart" class="text-center"></div>
                           <input type="hidden" id="cpuTemperature" value="<?php echo $cpuTemperature; ?>">
                           <?php $formattedCpuTemperature = number_format($cpuTemperature, 2); ?>
-                          <h6 class="mb-0 mt-5 text-center"><?php echo $formattedCpuTemperature;?>  ℃ Temperature</h6>
+                          <h6 class="mb-0 mt-5 text-center"><?php echo $formattedCpuTemperature;?>  ℃ Temperature</h6><br><br>
                     </div>
                   </div>
                 </div>
