@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="<?php echo base_url();?>assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css" />
     <link rel="stylesheet" href="<?php echo base_url();?>assets/vendor/libs/flatpickr/flatpickr.css" />
     <link rel="stylesheet" href="<?php echo base_url();?>assets/vendor/libs/datatables-rowgroup-bs5/rowgroup.bootstrap5.css" />
-    
+
     <link rel="stylesheet" href=" https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" href=" https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -61,8 +61,8 @@
                   <li class="nav-item navbar-dropdown dropdown-user dropdown">
                     <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                       <div class="avatar avatar-online">
-                        
-                        <img src="<?php echo base_url();?>assets/img/cosai.png" alt class="rounded-circle" />
+
+                        <img src="<?php echo base_url();?>assets/img/cosai.png" alt='cosai' class="rounded-circle" />
                       </div>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
@@ -78,7 +78,7 @@
               </div>
             </div>
           </nav>
-         
+
 
         <div class="content-wrapper">
             <div class="container-xxl flex-grow-1 container-p-y">
@@ -88,10 +88,11 @@
 
                 <div class="card">
                 <div class="card-datatable table-responsive pt-0">
-                 
+
                 <table class="table table-bordered">
                       <thead>
                         <tr>
+                          <th>S.No</th>
                           <th>User Name</th>
                           <th>User Email</th>
                           <th>User Password</th>
@@ -101,8 +102,9 @@
                         </tr>
                       </thead>
                       <tbody class="table-border-bottom-0">
-                      <?php foreach ($users as $user){ ?>
+                      <?php $serial_number=1; foreach ($users as $user){ ?>
                         <tr>
+                          <td><?php echo $serial_number;?></td>
                           <td><strong><?php echo $user['username']; ?></strong></td>
                           <td><?php echo $user['email']; ?></td>
                           <td><?php echo $user['password']; ?></td>
@@ -115,7 +117,7 @@
                                 data-bs-placement="top"
                                 class="avatar avatar-xs pull-up"
                                 title="<?php echo $user['username']; ?>">
-                                <img src=" <?php echo base_url();?>assets/img/upload_image/<?php echo $user['profile']; ?>" alt="Avatar" class="rounded-circle" />
+                                <img src=" <?php echo base_url();?>assets/img/upload_image/<?php echo $user['profile']; ?>" alt="Profile" class="rounded-circle" />
                               </li>
                             </ul>
                           </td>
@@ -130,12 +132,12 @@
                               </button>
                               <div class="dropdown-menu">
                                 <a class="dropdown-item" href="<?php echo base_url();?>admin/edituser?id=<?php echo $user['id']; ?>"><i class="bx bx-edit-alt me-1"></i> Edit</a>
-                                <a class="dropdown-item" href="<?php echo base_url();?>admin/edituser?id=<?php echo $user['id']; ?>"><i class="bx bx-trash me-1"></i> Delete</a>
+                                <a class="dropdown-item" href="<?php echo base_url();?>admin/deleteuser?id=<?php echo $user['id']; ?>"><i class="bx bx-trash me-1"></i> Delete</a>
                               </div>
                             </div>
                           </td>
                         </tr>
-                        <?php } ?>
+                      <?php  $serial_number++;} ?>
                       </tbody>
                     </table>
 
@@ -168,7 +170,7 @@
 
     <script src="<?php echo base_url();?>assets/vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js"></script>
     <script src="<?php echo base_url();?>assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js"></script>
-    
+
     <script src="<?php echo base_url();?>assets/js/pages-auth.js"></script>
     <script src="<?php echo base_url();?>assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js"></script>
     <script src="<?php echo base_url();?>assets/vendor/libs/moment/moment.js"></script>
@@ -218,5 +220,3 @@
 } );
 </script>
 </html>
-
-

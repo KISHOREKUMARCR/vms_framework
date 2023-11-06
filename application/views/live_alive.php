@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 <title>VMS</title>
 <meta name="description" content="" />
-<meta http-equiv="refresh" content="30">
 <link rel="icon" type="image/x-icon" href="<?php echo base_url();?>assets/img/cosai.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -34,10 +33,12 @@
               <h4 class="py-3 breadcrumb-wrapper mb-4"><span class="text-muted fw-light">Traffic Video /</span> Live View</h4>
               <div>
                 <h3 >After clicking, wait for 2 seconds</h3>
-                <form method="post" action="<?php echo base_url();?>live_view">
-                  <input type="submit"  class="btn btn-primary  mb-4" name="switch_status" value="Capture" />
-                  <img src="<?php echo base_url();?>assets/Real_capture/websocket_live.jpeg"   id="liveVideo" width="100%" height="650px" />
-                </form>
+                  <button id="myButton"  class="btn btn-primary  mb-4"  value="Capture">Click Me</button>
+                  <?php  $user_deviceId=$user_data->device_number;
+                   $folderPath=APPPATH .'Frames/'.$user_deviceId.'/frame1.jpeg';
+                   $image_path= base_url().'assets/Frames/'.$user_deviceId.'/frame1.jpeg';
+                   ?>
+                  <img src="<?php echo $image_path;?>" id="liveVideo" width="100%" height="650px" />
               </div>
             </div>
             <div class="content-backdrop fade"></div>
@@ -58,5 +59,26 @@
 <script src="<?php echo base_url();?>assets/vendor/js/menu.js"></script>
 <script src="<?php echo base_url();?>assets/vendor/libs/apex-charts/apexcharts.js"></script>
 <script src="<?php echo base_url();?>assets/js/main.js"></script>
-<script src="<?php echo base_url();?>assets/js/dashboards-analytics.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    $('#myButton').click(function () {
+      var buttonValue = $(this).val();
+      $.ajax({
+        type: 'POST',
+        url: 'User/capture_frame',
+        data: { buttonValue: buttonValue },
+        success: function (response) {
+          console.log(response);
+        },
+        error: function (xhr, status, error) {
+          console.error(error);
+        }
+      });
+    });
+  });
+</script>
+
+
 </html>

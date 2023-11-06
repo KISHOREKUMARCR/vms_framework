@@ -2,8 +2,8 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 
-class User extends CI_Controller{
 
+class User extends CI_Controller{
 
     function __construct() {
         parent::__construct();
@@ -218,17 +218,25 @@ class User extends CI_Controller{
     public function live_view(){
         $user_data = $this->session->userdata('user_data');
         $client_kitid=$user_data->device_number;
-        $switch_status=$this->input->post('switch_status');
-        $switch_data = array('live_switch' => $switch_status);
-        $this->User_model->UpdateSwitch($client_kitid, $switch_data);
-        $this->load->view('live_alive');
+        $this->load->view('live_alive',$client_kitid);
+    }
+
+    public function capture_frame(){
+      $user_data = $this->session->userdata('user_data');
+      $client_kitid=$user_data->device_number;
+      $buttonValue = $this->input->post('buttonValue');
+      echo $buttonValue;
+      $switch_data = array('live_switch' => $buttonValue);
+      $this->User_model->UpdateSwitch($client_kitid, $switch_data);
     }
 
     public function logout(){
-        $this->session->sess_destroy();
         $this->session->unset_userdata('user_data');
-        redirect('User');
+        $this->session->sess_destroy();
+        redirect('admin');
+
     }
+
 }
 
 

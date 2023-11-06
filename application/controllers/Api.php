@@ -11,7 +11,6 @@ class Api extends CI_Controller{
             $this->load->helper("security");
         }
         public function postdata() {
-
                 $json_data = file_get_contents('php://input');
                 $data = json_decode($json_data, true);
                 if ($data) {
@@ -54,6 +53,50 @@ class Api extends CI_Controller{
                 }
           }
 
+          public function getstream(){
+                  $user_data = $this->session->userdata('user_data');
+                  $user_kitid=$user_data->device_number;
 
+                  $live_status=$this->User_model->GetSwitchStatus($user_kitid);
+                  $data_live=$live_status['live_switch'];
+
+                  $data_live_array = json_decode($data_live, true); // Convert the JSON string to an associative array
+
+                  $json_data = file_get_contents('php://input');
+                  $data = json_decode($json_data, true);
+
+
+                  if ($data) {
+                        if (isset($data['kit_id'])) {
+                            var_dump($data_live); // Output: NULL
+                            $response = array(
+                            'live_switch' => $data_live
+                            );
+                            header('Content-Type: application/json');
+                            echo json_encode($response);
+                        }
+
+                        $Frame_status= $data['frame_status'];
+                        $UserKitId= $data['kit_id'];
+                        $SingleFrame_Kit= $data['image'];
+
+                        if (isset($SingleFrame_Kit)){
+                          $imageData = base64_decode($SingleFrame_Kit);
+                          $folderPath= APPPATH .'Frames/'.$UserKitId.'/';
+                          if (!file_exists($folderPath)){
+                            mkdir($folderPath,0777,true);
+                          }
+                          $imagePath = $folderPath . 'frame1.jpeg';
+                          file_put_contents($imagePath, $imageData);
+                          echo "Frames is Updated";
+                        }
+                        if (isset($Frame_status)){
+                           $switch_data=array('live_switch'=>$Frame_status);
+                           $live_status=$this->User_model->UpdateSwitch($UserKitId, $switch_data);
+                           echo "Switch Status is Updated";
+                        }
+
+                  }
+          }
   }
 ?>

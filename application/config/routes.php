@@ -64,10 +64,12 @@ $route['logout']='User/logout';
 $route['admin']='Admin';
 $route['admin_userlist']='Admin/userlist';
 $route['admin_edituser']='Admin/edituser';
+$route['updateprofile']='Admin/updateprofile';
+$route['deleteuser']='Admin/deleteuser';
 $route['admin_edituser/(:num)']="Admin/edituser/$1";
+$route['admin/logout']='Admin/logout';
 
 $route['api/postdata']='api/postdata';
-
-$route['frames/get_stream']='frames/get_stream';
+$route['api/getstream']='api/getstream';
 
 $route['cloud_info']='Cloudfile';
