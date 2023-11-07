@@ -66,7 +66,7 @@
 
                 <div class="card-datatable table-responsive pt-0">
 
-                      <table class="datatables-basic table table-bordered" id="example" class="display">
+                  <table class="datatables-basic table table-bordered" id="example" class="display">
                     <thead>
                     <tr>
 

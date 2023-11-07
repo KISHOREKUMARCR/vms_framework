@@ -230,10 +230,10 @@ class User extends CI_Controller{
       $this->User_model->UpdateSwitch($client_kitid, $switch_data);
     }
 
-    public function logout(){
+    public function logout1(){
         $this->session->unset_userdata('user_data');
         $this->session->sess_destroy();
-        redirect('admin');
+        redirect('user');
 
     }
 

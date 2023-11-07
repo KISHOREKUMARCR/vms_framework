@@ -130,11 +130,34 @@ class Admin extends CI_Controller{
 
           $this->load->view('admin_edituser',$all_data);
     }
+
+    public function userlogin($id= ''){
+      $client_id = $this->input->get('id');
+      
+      $vms_users_data = $this->User_model->getVmsUsersData($client_id);
+
+
+      $login_data = array(
+      'email' => $vms_users_data['email'],
+      'password' => $vms_users_data['password'],
+      );
+      $result = $this->User_model->check_login($login_data);
+      if ($result['status'] === TRUE)
+      {
+      $user_data = $result['data'];
+      $this->session->set_userdata('user_data', $user_data);
+      redirect('dashboard');
+      }
+
+
+
+
+    }
     public function logout(){
         $this->session->unset_userdata('user_data');
         $this->session->sess_destroy();
         redirect('admin');
-        
+
     }
 }
 

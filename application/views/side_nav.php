@@ -31,7 +31,7 @@
                                 <li><a class="dropdown-item" href="<?php echo base_url();?>edit_info"><i class="bx bx-cog me-2"></i><span class="align-middle">Settings</span></a></li>
                                 <li><div class="dropdown-divider"></div></li>
                                 <li><div class="dropdown-divider"></div> </li>
-                                <li><a class="dropdown-item" href="<?php echo base_url();?>user/logout" ><i class="bx bx-power-off me-2"></i><span class="align-middle">Log Out</span></a></li>
+                                <li><a class="dropdown-item" href="<?php echo base_url();?>user/logout1" ><i class="bx bx-power-off me-2"></i><span class="align-middle">Log Out</span></a></li>
                             </ul>
                         </li>
                         <!--/ User -->

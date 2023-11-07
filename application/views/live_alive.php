@@ -35,9 +35,8 @@
                 <h3 >After clicking, wait for 2 seconds</h3>
                   <button id="myButton"  class="btn btn-primary  mb-4"  value="Capture">Click Me</button>
                   <?php  $user_deviceId=$user_data->device_number;
-                   $folderPath=APPPATH .'Frames/'.$user_deviceId.'/frame1.jpeg';
-                   $image_path= base_url().'assets/Frames/'.$user_deviceId.'/frame1.jpeg';
-                   ?>
+                     $image_path= base_url('Frames/' . $user_deviceId . '/frame1.jpeg');
+                  ?>
                   <img src="<?php echo $image_path;?>" id="liveVideo" width="100%" height="650px" />
               </div>
             </div>
@@ -71,6 +70,7 @@
         data: { buttonValue: buttonValue },
         success: function (response) {
           console.log(response);
+          location.reload();
         },
         error: function (xhr, status, error) {
           console.error(error);
