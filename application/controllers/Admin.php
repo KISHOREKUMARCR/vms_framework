@@ -133,10 +133,7 @@ class Admin extends CI_Controller{
 
     public function userlogin($id= ''){
       $client_id = $this->input->get('id');
-
       $vms_users_data = $this->User_model->getVmsUsersData($client_id);
-
-
       $login_data = array(
       'email' => $vms_users_data['email'],
       'password' => $vms_users_data['password'],
@@ -149,10 +146,52 @@ class Admin extends CI_Controller{
       redirect('dashboard');
       }
 
-
-
-
     }
+
+    public function add_users(){
+      $this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[4]|max_length[50]');
+      $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+      $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]');
+      $this->form_validation->set_rules('confirm_password', 'Confirm Password', 'trim|required|matches[password]');
+      $this->form_validation->set_rules('device_number', 'Device Number', 'trim|required');
+
+      if ($_SERVER['REQUEST_METHOD'] == 'POST')
+      {
+              if ($this->form_validation->run() == true)
+               {
+                    $email = $this->input->post('email');
+                    $email_exists = $this->User_model->checkEmailExists($email);
+                      if($email_exists){
+                          $this->session->set_flashdata('error', "Email already exists. Please choose another email.");
+                          $this->load->view('add_users');
+                          return;
+                      }
+                    $userData = array(
+                        'username' => strip_tags($this->input->post('username')),
+                        'email' => strip_tags($this->input->post('email')),
+                        'password' => strip_tags($this->input->post('password')),
+                        'device_number' => strip_tags($this->input->post('device_number')),
+                    );
+                    $insert_data_response = $this->User_model->insertUsers($userData);
+                      if ($insert_data_response) {
+                          $this->session->set_flashdata('success', "Saved Successfully!");
+                      } else {
+                          $this->session->set_flashdata('error', "Registration failed.");
+                      }
+                    $this->load->view('add_users');
+                }
+                else
+                {
+                   $this->load->view('add_users');
+                 }
+
+            }else{
+                $this->load->view('add_users');
+            }
+    }
+
+
+
     public function logout(){
         $this->session->unset_userdata('user_data');
         $this->session->sess_destroy();

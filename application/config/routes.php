@@ -67,6 +67,7 @@ $route['admin_edituser']='Admin/edituser';
 $route['updateprofile']='Admin/updateprofile';
 $route['deleteuser']='Admin/deleteuser';
 $route['userlogin']='Admin/userlogin';
+$route['admin/add_users']='Admin/add_users';
 $route['admin_edituser/(:num)']="Admin/edituser/$1";
 $route['admin/logout']='Admin/logout';
 

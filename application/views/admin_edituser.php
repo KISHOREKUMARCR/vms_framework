@@ -41,7 +41,8 @@ $client_id=$vms_users_data['id'];
               <li class="menu-item  ">
                 <a href="<?php echo base_url();?>admin_userlist" class="menu-link"> <i class="menu-icon tf-icons bx bx-home-circle"></i> <div data-i18n="User Lists">User Lists </div> </a>
               </li>
-
+              <li class="menu-item  "><a href="<?php echo base_url();?>admin/add_users" class="menu-link"> <i class="menu-icon tf-icons bx bx-user"></i> <div data-i18n="User Lists">Add User</div> </a>
+              </li>
             </ul>
         </aside>
         <div class="layout-page">
