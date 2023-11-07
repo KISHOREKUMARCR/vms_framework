@@ -39,7 +39,7 @@ class Admin extends CI_Controller{
                 $this->load->view('admin_login');
             }
         }
-        $this->load->view('admin_login');
+
     }
 
     public function userlist(){
@@ -133,7 +133,7 @@ class Admin extends CI_Controller{
 
     public function userlogin($id= ''){
       $client_id = $this->input->get('id');
-      
+
       $vms_users_data = $this->User_model->getVmsUsersData($client_id);
 
 

@@ -70,7 +70,7 @@ class Api extends CI_Controller{
           }
 
           public function non_capture(){
-            echo "This is a noncapure function";
+            echo "This is a non capure function";
           }
           public function capture_frames(){
             $json_data = file_get_contents('php://input');

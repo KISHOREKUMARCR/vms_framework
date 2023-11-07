@@ -15,8 +15,7 @@
 
     <meta name="description" content="" />
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="images/cosai.png" />
+      <link rel="icon" type="image/x-icon" href="<?php echo base_url();?>assets/img/cosai.png" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -55,7 +54,7 @@
     <div class="authentication-inner row m-0">
         <div class="d-none d-lg-flex col-lg-7 col-xl-8 align-items-center">
             <div class="flex-row text-center mx-auto">
-                <img src="<?php echo base_url();?>assets\img\user_login.png" width="350" class="img-fluid ">  
+                <img src="<?php echo base_url();?>assets\img\user_login.png" width="350" class="img-fluid ">
                 <div class="mx-auto "><br>
                     <h3>AI Based Video Management System 🥳</h3>
                     <p>Perfectly suited for traffic analytical <br /></p>
@@ -79,7 +78,7 @@
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
                     <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email" autofocus />
-                    <span class="error"><?php echo form_error('email'); ?></span>                    
+                    <span class="error"><?php echo form_error('email'); ?></span>
                 </div>
                 <div class="mb-3 form-password-toggle">
                     <div class="d-flex justify-content-between">
@@ -89,24 +88,24 @@
                     <div class="input-group input-group-merge">
                         <input  type="password" id="password"class="form-control"name="password"placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"aria-describedby="password" />
                         <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
-                        
+
                     </div>
-                    <span class="error"><?php echo form_error('password'); ?></span>  
-                </div>                        
+                    <span class="error"><?php echo form_error('password'); ?></span>
+                </div>
                 <!-- <div class="mb-3">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="remember-me" />
                         <label class="form-check-label" for="remember-me"> Remember Me </label>
                     </div>
                 </div> -->
-                
+
                 <input type='submit'  class="btn btn-primary d-grid w-100" class="submitsignin" value="Sign in">
                 </form>
                 <!-- <p class="text-center"> <span>New on our platform?</span><a href="auth-register-cover.php"> <span>Create an account</span></a></p> -->
                 <div class="divider my-4">
                     <div class="divider-text">Visit Our platform</div>
                 </div>
-                
+
                 <div class="d-flex justify-content-center">
                     <a href="https://www.facebook.com/cosaimadurai" class="btn btn-icon btn-label-facebook me-3"><i class="tf-icons bx bxl-facebook"></i></a>
                     <a href="https://www.linkedin.com/in/cosai/" class="btn btn-icon btn-label-linkedin me-3"><i class="tf-icons bx bxl-linkedin"></i></a>
@@ -115,11 +114,11 @@
 
 
             </div>
-        </div>  
+        </div>
     </div>
 </div>
 </body>
-  
+
 
     <script src="<?php echo base_url();?>assets/vendor/libs/jquery/jquery.js"></script>
     <script src="<?php echo base_url();?>assets/vendor/libs/popper/popper.js"></script>
