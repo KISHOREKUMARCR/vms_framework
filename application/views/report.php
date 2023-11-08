@@ -99,7 +99,7 @@
 
                             <div class="modal-header">
                             <a href="#" class="app-brand-link">
-                            <img src="http://localhost/vms/images/cosai.png" width="50" height="50">
+                            <img src="<?php echo base_url();?>assets/img/cosai.png" width="50" height="50">
                             <span class="app-brand-text demo menu-text fw-bold ms-2">COS AI</span>
                             <h5 class="modal-title text-center"  style="margin-left: 100px;font-size: x-large;font-style: italic;color: darkorange;" id="videoModalLabel"><?php echo $user_cloud_data['start_time']; ?></h5>
                             </a>

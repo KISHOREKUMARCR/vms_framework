@@ -4,73 +4,36 @@ $client_id=$vms_users_data['id'];
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-    <title>VMS</title>
-    <meta name="description" content="" />
-    <link rel="icon" type="image/x-icon" href="<?php echo base_url();?>assets/img/cosai.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/vendor/fonts/boxicons.css" />
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/vendor/fonts/fontawesome.css" />
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/vendor/fonts/flag-icons.css" />
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/vendor/css/rtl/core.css"  />
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/vendor/css/rtl/theme-default.css" />
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/demo.css" />
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/vendor/libs/typeahead-js/typeahead.css" />
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/vendor/libs/formvalidation/dist/css/formValidation.min.css" />
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/vendor/css/pages/page-auth.css" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+<title>VMS</title>
+<meta name="description" content="" />
+<link rel="icon" type="image/x-icon" href="<?php echo base_url();?>assets/img/cosai.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"rel="stylesheet" />
+<link rel="stylesheet" href="<?php echo base_url();?>assets/vendor/fonts/boxicons.css" />
+<link rel="stylesheet" href="<?php echo base_url();?>assets/vendor/fonts/fontawesome.css" />
+<link rel="stylesheet" href="<?php echo base_url();?>assets/vendor/fonts/flag-icons.css" />
+<link rel="stylesheet" href="<?php echo base_url();?>assets/vendor/css/rtl/core.css" />
+<link rel="stylesheet" href="<?php echo base_url();?>assets/vendor/css/rtl/theme-default.css"  />
+<link rel="stylesheet" href="<?php echo base_url();?>assets/css/demo.css" />
+<link rel="stylesheet" href="<?php echo base_url();?>assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+<link rel="stylesheet" href="<?php echo base_url();?>assets/vendor/libs/typeahead-js/typeahead.css" />
+<link rel="stylesheet" href="<?php echo base_url();?>assets/vendor/libs/apex-charts/apex-charts.css" />
+<script src="<?php echo base_url();?>assets/vendor/js/helpers.js"></script>
+<script src="<?php echo base_url();?>assets/js/config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
         <!-- Menu -->
 
-        <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
-            <div class="app-brand demo">
-              <a href="dashboard.php" class="app-brand-link"><img src="<?php echo base_url();?>assets/img/cosai.png" width="50" height="50"><span class="app-brand-text demo menu-text fw-bold ms-2">COS AI</span></a>
-              <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto"><i class="bx menu-toggle-icon d-none d-xl-block fs-4 align-middle"></i><i class="bx bx-x d-block d-xl-none bx-sm align-middle"></i></a>
-            </div>
-
-            <div class="menu-divider mt-0"></div><div class="menu-inner-shadow"></div>
-
-            <ul class="menu-inner py-1">
-              <li class="menu-header small text-uppercase"><span class="menu-header-text">Apps &amp; Pages</span></li>
-              <li class="menu-item  ">
-                <a href="<?php echo base_url();?>admin_userlist" class="menu-link"> <i class="menu-icon tf-icons bx bx-home-circle"></i> <div data-i18n="User Lists">User Lists </div> </a>
-              </li>
-              <li class="menu-item  "><a href="<?php echo base_url();?>admin/add_users" class="menu-link"> <i class="menu-icon tf-icons bx bx-user"></i> <div data-i18n="User Lists">Add User</div> </a>
-              </li>
-            </ul>
-        </aside>
+        <?php include('admin_aside.php');?>
         <div class="layout-page">
 
-          <nav class="layout-navbar navbar navbar-expand-xl align-items-center bg-navbar-theme" id="layout-navbar">
-            <div class="container-fluid">
-              <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
-                <ul class="navbar-nav flex-row align-items-center ms-auto">
-                  <li class="nav-item navbar-dropdown dropdown-user dropdown">
-                    <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-                      <div class="avatar avatar-online">
-
-                        <img src="<?php echo base_url();?>assets/img/cosai.png" alt='cosai' class="rounded-circle" />
-                      </div>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                      <li>
-                        <a class="dropdown-item" href="<?php echo base_url();?>admin/logout" >
-                          <i class="bx bx-power-off me-2"></i>
-                          <span class="align-middle">Log Out</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </nav>
+          <?php include('admin_sidenav.php');?>
 
           <!-- Content wrapper -->
           <div class="content-wrapper">
@@ -78,17 +41,12 @@ $client_id=$vms_users_data['id'];
 
             <div class="container-xxl flex-grow-1 container-p-y">
               <h4 class="py-3 breadcrumb-wrapper mb-4">
-                <span class="text-muted fw-light">Account Settings /</span> Account
+                <span class="text-muted fw-light"> Settings /</span> Profile
               </h4>
 
               <div class="row">
                 <div class="col-md-12">
-                  <ul class="nav nav-pills flex-column flex-md-row mb-3">
-                    <li class="nav-item">
-                      <a class="nav-link active" href="javascript:void(0);"><i class="bx bx-user me-1"></i> Account</a>
-                    </li>
-
-                  </ul>
+                
 
                   <div class="card mb-4">
                     <h5 class="card-header">Profile Details</h5>
@@ -301,5 +259,11 @@ $client_id=$vms_users_data['id'];
     <script src="<?php echo base_url();?>assets/vendor/libs/formvalidation/dist/js/FormValidation.min.js"></script>
     <script src="<?php echo base_url();?>assets/vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js"></script>
     <script src="<?php echo base_url();?>assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js"></script>
+  <script src="<?php echo base_url();?>assets/vendor/libs/apex-charts/apexcharts.js"></script>
+  <script src="<?php echo base_url();?>assets/js/main.js"></script>
+
+
+
+
 
 </html>

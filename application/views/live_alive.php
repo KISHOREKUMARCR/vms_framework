@@ -63,6 +63,7 @@
 <script>
   $(document).ready(function () {
     $('#myButton').click(function () {
+
       var buttonValue = $(this).val();
       $.ajax({
         type: 'POST',
@@ -70,7 +71,10 @@
         data: { buttonValue: buttonValue },
         success: function (response) {
           console.log(response);
-          location.reload();
+          setTimeout(function () {
+            location.reload();
+          }, 3000);
+
         },
         error: function (xhr, status, error) {
           console.error(error);

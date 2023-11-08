@@ -56,33 +56,18 @@ class Api extends CI_Controller{
 
 
           public function getstream(){
-                $user_data = $this->session->userdata('user_data');
-                $user_kitid=$user_data->device_number;
-                $live_status=$this->User_model->GetSwitchStatus($user_kitid);
-                $data_live=$live_status['live_switch'];
-
-                if($data_live=="Non-Capture"){
-                  $this->non_capture();
-                }
-                else{
-                  $this->capture_frames();
-                }
-          }
-
-          public function non_capture(){
-            echo "This is a non capure function";
-          }
-          public function capture_frames(){
             $json_data = file_get_contents('php://input');
             $data = json_decode($json_data, true);
             if ($data) {
               if (isset($data['kit_id'])) {
+                  $kit_id = $data['kit_id'];
+                  $live_status=$this->User_model->GetSwitchStatus($kit_id);
+                  $data_live=$live_status['live_switch'];
                   $response = array(
-                  'live_switch' =>  'Capture'
+                  'live_switch' =>  $data_live
                   );
                   header('Content-Type: application/json');
                   echo json_encode($response);
-
               }
               $Frame_status= $data['frame_status'];
               $UserKitId= $data['kit_id'];
@@ -95,9 +80,7 @@ class Api extends CI_Controller{
                   mkdir($folderPath,0777,true);
                 }
                 $imagePath = $folderPath . 'frame1.jpeg';
-
                 file_put_contents($imagePath, $imageData);
-
 
               }
               if (isset($Frame_status)){
