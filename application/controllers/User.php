@@ -200,17 +200,18 @@ class User extends CI_Controller{
 
 
     public function report(){
+
         $user_data = $this->session->userdata('user_data');
         $client_id = $user_data->id;
         $client_kitid=$user_data->device_number;
 
-        $vms_users_data = $this->User_model->getVmsUsersData($client_id);
-        $user_cloud_data=$this->User_model->getcloudReport($client_kitid);
-
-        $all_data = array(
-        'vms_users_data' => $vms_users_data,
-        'user_cloud_data'=>$user_cloud_data
-        );
+        // $vms_users_data = $this->User_model->getVmsUsersData($client_id);
+        // $user_cloud_data=$this->User_model->getcloudReport($client_kitid);
+        //
+        // $all_data = array(
+        // 'vms_users_data' => $vms_users_data,
+        // 'user_cloud_data'=>$user_cloud_data
+        // );
 
         // #######################################
         $user_cloud_data=$this->User_model->getcloudReport($client_kitid);
@@ -222,10 +223,43 @@ class User extends CI_Controller{
         if (!file_exists($folderPath)){
         mkdir($folderPath,0777,true);
         }
-        $dataPath = $folderPath . 'table_data.json';
+        $dataPath = $folderPath . 'cloud_report.json';
         file_put_contents($dataPath, $json_data);
-        $this->load->view('report1',$all_data);
+
+        // #######################################
+
+        $this->load->view('report1');
     }
+
+        public function getJsonData() {
+            // Specify the path to the JSON file
+            $json_file_path = 'JsonData/cloud_report.json';
+
+            if (file_exists($json_file_path)) {
+            $json_data = file_get_contents($json_file_path);
+            $data = json_decode($json_data, true);
+
+            $draw = $this->input->post('draw');
+            $start = $this->input->post('start');
+            $length = $this->input->post('length');
+            $filteredData = array_slice($data['data'], $start, $length);
+
+            $response = array(
+            'draw' => $draw,
+            'recordsTotal' => count($data['data']),
+            'recordsFiltered' => count($data['data']),
+            'data' => $filteredData,
+            );
+
+            $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($response));
+            } else {
+            $this->output->set_status_header(404);
+            echo 'JSON file not found.';
+            }
+        }
+
 
 
     public function live_view(){
