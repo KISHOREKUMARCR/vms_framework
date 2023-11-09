@@ -204,15 +204,6 @@ class User extends CI_Controller{
         $user_data = $this->session->userdata('user_data');
         $client_id = $user_data->id;
         $client_kitid=$user_data->device_number;
-
-        // $vms_users_data = $this->User_model->getVmsUsersData($client_id);
-        // $user_cloud_data=$this->User_model->getcloudReport($client_kitid);
-        //
-        // $all_data = array(
-        // 'vms_users_data' => $vms_users_data,
-        // 'user_cloud_data'=>$user_cloud_data
-        // );
-
         // #######################################
         $user_cloud_data=$this->User_model->getcloudReport($client_kitid);
         $json_alldata = array(
@@ -227,8 +218,7 @@ class User extends CI_Controller{
         file_put_contents($dataPath, $json_data);
 
         // #######################################
-
-        $this->load->view('report1');
+        $this->load->view('report1',$all_data);
     }
 
         public function getJsonData() {

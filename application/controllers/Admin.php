@@ -41,10 +41,50 @@ class Admin extends CI_Controller{
         }
 
     }
+    public function getalluserlist(){
+      $json_file_path = 'JsonData/alluserlist.json';
+        if (file_exists($json_file_path))
+        {
+              $json_data=file_get_contents($json_file_path);
+              $data = json_decode($json_data, true);
+              $draw = $this->input->post('draw');
+              $start = $this->input->post('start');
+              $length = $this->input->post('length');
+              $filteredData = array_slice($data['data'], $start, $length);
+              $response = array(
+              'draw' => $draw,
+              'recordsTotal' => count($data['data']),
+              'recordsFiltered' => count($data['data']),
+              'data' => $filteredData,
+              );
+              $this->output
+              ->set_content_type('application/json')
+              ->set_output(json_encode($response));
+        } else {
+              $this->output->set_status_header(404);
+              echo 'JSON file not found.';
+        }
+    }
+
 
     public function userlist(){
-        $data['users'] = $this->Admin_model->get_user_details();
-        $this->load->view('admin_userlist',$data);
+        // $data['users'] = $this->Admin_model->get_user_details();
+        // $this->load->view('admin_userlist',$data);
+
+        $data= $this->Admin_model->get_user_details();
+        $json_alldata = array(
+        'data'=>$data
+        );
+        $json_data = json_encode($json_alldata,JSON_PRETTY_PRINT);
+        $folderPath='JsonData/';
+        if (!file_exists($folderPath)){
+        mkdir($folderPath,0777,true);
+        }
+        $dataPath = $folderPath . 'alluserlist.json';
+        file_put_contents($dataPath, $json_data);
+        $this->load->view('admin_userlist1',$data);
+
+
     }
 
     public function deleteuser($id = '') {
@@ -178,7 +218,7 @@ class Admin extends CI_Controller{
                       } else {
                           $this->session->set_flashdata('error', "Registration failed.");
                       }
-                    $this->load->view('add_users');
+                    $this->load->view('admin_userlist1');
                 }
                 else
                 {

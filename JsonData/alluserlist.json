@@ -1,0 +1,64 @@
+{
+    "data": [
+        {
+            "id": "6",
+            "username": "muthukumar",
+            "email": "muthukumar@gmail.com",
+            "password": "123456",
+            "device_number": "COSAI_VMS_999",
+            "live_switch": "",
+            "time": "2023-11-07 13:41:30",
+            "phone": "2147483647",
+            "address": "MADURAI",
+            "state": "kerala",
+            "zipcode": "730547",
+            "country": "India",
+            "profile": "car_wallpaper12.jpg"
+        },
+        {
+            "id": "9",
+            "username": "kit1",
+            "email": "kit1@gmail.com",
+            "password": "123456",
+            "device_number": "COSAI_VMS_456",
+            "live_switch": "Non-Capture",
+            "time": "2023-11-07 16:18:50",
+            "phone": "2147483647",
+            "address": "MADURAI",
+            "state": "kerala",
+            "zipcode": "456123",
+            "country": "India",
+            "profile": "car_wallpaper15.jpg"
+        },
+        {
+            "id": "21",
+            "username": "demo",
+            "email": "demo@gmail.com",
+            "password": "123456",
+            "device_number": "COSAI_VMS_969",
+            "live_switch": "",
+            "time": "2023-11-09 18:34:59",
+            "phone": "0",
+            "address": "",
+            "state": "",
+            "zipcode": "0",
+            "country": "",
+            "profile": ""
+        },
+        {
+            "id": "22",
+            "username": "demo1",
+            "email": "demo1@gmail.com",
+            "password": "123456",
+            "device_number": "COSAI_VMS_492",
+            "live_switch": "",
+            "time": "2023-11-09 18:36:01",
+            "phone": "0",
+            "address": "",
+            "state": "",
+            "zipcode": "0",
+            "country": "",
+            "profile": ""
+        }
+    ]
+}
