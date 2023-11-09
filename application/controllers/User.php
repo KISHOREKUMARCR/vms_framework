@@ -211,7 +211,20 @@ class User extends CI_Controller{
         'vms_users_data' => $vms_users_data,
         'user_cloud_data'=>$user_cloud_data
         );
-        $this->load->view('report',$all_data);
+
+        // #######################################
+        $user_cloud_data=$this->User_model->getcloudReport($client_kitid);
+        $json_alldata = array(
+        'data'=>$user_cloud_data
+        );
+        $json_data = json_encode($json_alldata,JSON_PRETTY_PRINT);
+        $folderPath='JsonData/';
+        if (!file_exists($folderPath)){
+        mkdir($folderPath,0777,true);
+        }
+        $dataPath = $folderPath . 'table_data.json';
+        file_put_contents($dataPath, $json_data);
+        $this->load->view('report1',$all_data);
     }
 
 
