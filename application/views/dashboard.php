@@ -31,6 +31,18 @@ $drive_total_space_gb = $users_raspidata["drive_total_space_gb"];
 $drive_free_space_gb = $users_raspidata["drive_free_space_gb"];
 $drive_used_space_gb = $users_raspidata["drive_used_space_gb"];
 $drive_free_space_percentage = $users_raspidata["drive_free_space_percentage"];
+
+date_default_timezone_set('Asia/Kolkata');
+$lastModificationTimestamp = strtotime($update_time);
+$currentTimestamp = time();
+$timeDifference = $currentTimestamp - $lastModificationTimestamp;
+$powerOffThreshold = 1 * 60;
+if ($timeDifference >= $powerOffThreshold) {
+$kit_live_status=0;
+
+} else {
+$kit_live_status=1;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -83,6 +95,16 @@ float:inline-end;
 
               <div class="row gy-4">
 
+              <?php
+                if($kit_live_status==0){?>
+              <div class="alert alert-danger alert-dismissible mb-4" role="alert">
+              <div class="fw-bold">Kit Status</div>
+              <ul class="list-unstyled mb-0">
+              <li>- Power off, unable to show device information.</li>
+              </ul>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            <?php } else{ ?>
               <div class="col-md-6 col-lg-6 mb-4 mb-md-0">
                   <div class="card h-100">
                     <div class="card-header d-flex justify-content-between align-items-center">
@@ -91,21 +113,13 @@ float:inline-end;
                     <div class="card-body">
 
                       <?php
-                    date_default_timezone_set('Asia/Kolkata');
-                    $lastModificationTimestamp = strtotime($update_time);
-                    $currentTimestamp = time();
-                    $timeDifference = $currentTimestamp - $lastModificationTimestamp;
-                    $powerOffThreshold = 1 * 60;
-
-                    if ($timeDifference >= $powerOffThreshold) {
-                    $kit_live_status=0;//power is off
-                    echo '<button type="button" class="  rounded-button-01 mb-0 btn btn-danger"><span style="font-size: 20px;">POWER OFF</span></button>';
-                    } else {
-                    $kit_live_status=1; //poweris on
-                    echo '<button type="button" class="  rounded-button-01 mb-0 btn btn-success"><span style="font-size: 23px;">ACTIVE</span></button>';
-                    }
-                    ?>
-
+                      if($kit_live_status==1){
+                          echo '<button type="button" class="  rounded-button-01 mb-0 btn btn-success"><span style="font-size: 23px;">ACTIVE</span></button>';
+                      }
+                      else{
+                          echo '<button type="button" class="  rounded-button-01 mb-0 btn btn-danger"><span style="font-size: 20px;">POWER OFF</span></button>';
+                      }
+                      ?>
                       <ul class="p-0 m-5">
                       <li class="mb-3 d-flex justify-content-between">
                       <div class="d-flex align-items-center lh-1 me-3">
@@ -266,11 +280,12 @@ float:inline-end;
                     </div>
                   </div>
                 </div>
-
-
-
               </div>
             </div>
+            <?php   }?>
+
+
+
             <!-- Footer -->
 
             <!-- / Footer -->

@@ -150,11 +150,7 @@ class User extends CI_Controller{
 
                 $this->upload->initialize($config);
 
-                if ($this->upload->do_upload('upload_img')) {
-                $upload_data = $this->upload->data();
-                $data['uploaded_image'] = $upload_data['file_name'];
-                $image_url = $upload_path . $data['uploaded_image'];
-                }
+
                 $user_data = array(
                     'username' => $this->input->post('username'),
                     'device_number' => $this->input->post('deviceid'),
@@ -163,10 +159,16 @@ class User extends CI_Controller{
                     'address' => $this->input->post('address'),
                     'state' => $this->input->post('state'),
                     'zipCode' => $this->input->post('zipCode'),
-                    'country' => $this->input->post('country'),
-                    'profile' => $data['uploaded_image']
+                    'country' => $this->input->post('country')
                 );
-
+                if ($this->upload->do_upload('upload_img')) {
+                  $upload_data = $this->upload->data();
+                  $data['uploaded_image'] = $upload_data['file_name'];
+                  $image_url = $upload_path . $data['uploaded_image'];
+                  $user_data = array(
+                    'profile' =>   $data['uploaded_image']
+                  );
+                }
                 $user_data_updated = $this->User_model->edituserDetails($client_id, $user_data);
                 $this->User_model->saveOrUpdateDriveData($client_id, $drive_data);
                 if ($user_data_updated) {
@@ -255,7 +257,14 @@ class User extends CI_Controller{
     public function live_view(){
         $user_data = $this->session->userdata('user_data');
         $client_kitid=$user_data->device_number;
-        $this->load->view('live_alive',$client_kitid);
+
+        $user_raspi_data=$this->User_model->getRaspiData($client_kitid);
+        $userInfo = array(
+        'users_raspidata' =>$user_raspi_data,
+        'client_kitid' =>$client_kitid
+        );
+
+        $this->load->view('live_alive',$userInfo);
     }
 
     public function capture_frame(){

@@ -6,7 +6,7 @@ $client_id=$vms_users_data['id'];
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-<title>VMS</title>
+<title>ADMIN-VMS</title>
 <meta name="description" content="" />
 <link rel="icon" type="image/x-icon" href="<?php echo base_url();?>assets/img/cosai.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -46,7 +46,7 @@ $client_id=$vms_users_data['id'];
 
               <div class="row">
                 <div class="col-md-12">
-                
+
 
                   <div class="card mb-4">
                     <h5 class="card-header">Profile Details</h5>
@@ -65,19 +65,19 @@ $client_id=$vms_users_data['id'];
                     <?php echo $this->session->flashdata('error'); ?>
                     </div>
                     <?php } ?>
-                      <div class="d-flex align-items-start align-items-sm-center gap-4">
+                    <div class="d-flex align-items-start align-items-sm-center gap-4">
 
-                      <img src="<?php echo base_url();?>assets/img/upload_image/<?php echo isset($vms_users_data['profile']) ? $vms_users_data['profile'] : ''; ?>" alt="profile"class="d-block rounded"height="100"width="100"id="uploadedAvatar" />
-                        <div class="button-wrapper">
-                          <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
-                            <span class="d-none d-sm-block">Upload new photo</span>
-                            <i class="bx bx-upload d-block d-sm-none"></i>
-                            <input type="file"id="upload"class="account-file-input"hidden name="upload_img"/>
-                          </label>
+                    <img src="<?php echo base_url();?>assets/img/upload_image/<?php echo $vms_users_data['profile']; ?>" alt="profile"class="d-block rounded"height="100"width="100"id="uploadedAvatar" />
+                      <div class="button-wrapper">
+                        <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
+                          <span class="d-none d-sm-block">Upload new photo</span>
+                          <i class="bx bx-upload d-block d-sm-none"></i>
+                          <input type="file"id="upload"class="account-file-input"hidden name="upload_img"/>
+                        </label>
 
-                          <p class="mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
-                        </div>
+                        <p class="mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
                       </div>
+                    </div>
                     </div>
                     <hr class="my-0" />
                     <div class="card-body">

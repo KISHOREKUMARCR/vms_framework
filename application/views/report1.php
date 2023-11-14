@@ -136,64 +136,72 @@
     <script src="<?php echo base_url(); ?>assets/js/main.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/modal-edit-permission.js"></script>
     <!-- Page JS -->
-    <script>
-        $(document).ready(function() {
-            var dataTable = $('#example').DataTable({
-                "processing": true,
-                "serverSide": true,
-                "ajax": {
-                    "url": "<?php echo base_url('User/getJsonData'); ?>",
-                    "type": "POST"
-                },
-                "columns": [
-                    {
-                        data: null,
-                        render: function(data, type, full, meta) {
-                            return meta.row + 1;
-                        }
-                    },
-                    { data: 'file_name' },
-                    { data: 'start_time' },
-                    {
-                        targets: -2,
-                        render: function (data, type, full, meta) {
-                            var $status_number =1;
-                            var $status = {
-                              1: { title: 'Completed', class: ' bg-label-success' }
-                            };
-                            return (
-                              '<span class="badge rounded-pill ' +
-                              $status[$status_number].class +
-                              '">' +
-                              $status[$status_number].title +
-                              '</span>'
-                            );
-                        }
-                    },
-                    {
-                        targets: -1,
-                        data: 'file_url',
-                        title: 'Actions',
-                        searchable: false,
-                        orderable: false,
-                        render: function (data, type, full, meta) {
-                          return (
-                              '<div class="d-flex align-items-center">' +
-                              '<a href="mailto:?subject=Check out this video&body=Here\'s the link to the video on Google Drive: ' + data + '"  role="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Send Mail"><i class="bx bx-send mx-1"></i></a>' +
-                              '<a href="javascript:;" class="text-body open-modal" data-bs-toggle="tooltip" data-bs-placement="top" data-modal-src="' + data + '" title="Preview Invoice"><i class="bx bx-show mx-1"></i></a>' +
-                              '</div>'
-                          );
-                        }
 
-                    }
-                ]
-            });
-            $('#example').on('click', '.open-modal', function() {
-            var fileUrl = $(this).data('modal-src');
-            $('#iframeContent').attr('src', fileUrl);
-            $('#editPermissionModal').modal('show');
-            });
-        });
+
+    <script>
+    $(function () {
+    var groupingTable = $('.dt-row-grouping'),
+    groupColumn = 1; // Replace with the actual index of the column you want to group by
+
+    if (groupingTable.length) {
+      var dt_grouping = groupingTable.DataTable({
+        ajax: {
+          url: "<?php echo base_url('User/getJsonData'); ?>",
+          type: "POST"
+        },
+        columns: [
+            {
+                data: null,
+                render: function(data, type, full, meta) {
+                    return meta.row + 1;
+                }
+            },
+            { data: 'file_name' },
+            { data: 'start_time' },
+            {
+                targets: -2,
+                render: function (data, type, full, meta) {
+                    var $status_number =1;
+                    var $status = {
+                      1: { title: 'Completed', class: ' bg-label-success' }
+                    };
+                    return (
+                      '<span class="badge rounded-pill ' +
+                      $status[$status_number].class +
+                      '">' +
+                      $status[$status_number].title +
+                      '</span>'
+                    );
+                }
+            },
+            {
+                targets: -1,
+                data: 'file_url',
+                title: 'Actions',
+                searchable: false,
+                orderable: false,
+                render: function (data, type, full, meta) {
+                  return (
+                      '<div class="d-flex align-items-center">' +
+                      '<a href="mailto:?subject=Check out this video&body=Here\'s the link to the video on Google Drive: ' + data + '"  role="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Send Mail"><i class="bx bx-send mx-1"></i></a>' +
+                      '<a href="javascript:;" class="text-body open-modal" data-bs-toggle="tooltip" data-bs-placement="top" data-modal-src="' + data + '" title="Preview Invoice"><i class="bx bx-show mx-1"></i></a>' +
+                      '</div>'
+                  );
+                }
+
+            }
+        ],
+        order: [[groupColumn, 'asc']]
+      });
+      $('#example').on('click', '.open-modal', function() {
+      var fileUrl = $(this).data('modal-src');
+      $('#iframeContent').attr('src', fileUrl);
+      $('#editPermissionModal').modal('show');
+      });
+    }
+    });
+
     </script>
+
   </body>
 </html>

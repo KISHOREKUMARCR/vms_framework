@@ -1,3 +1,18 @@
+<?php
+$update_time = $users_raspidata["modify_time"];
+
+date_default_timezone_set('Asia/Kolkata');
+$lastModificationTimestamp = strtotime($update_time);
+$currentTimestamp = time();
+$timeDifference = $currentTimestamp - $lastModificationTimestamp;
+$powerOffThreshold = 1 * 60;
+if ($timeDifference >= $powerOffThreshold) {
+$kit_live_status=0;
+} else {
+$kit_live_status=1;
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,14 +46,27 @@
         <div class="content-wrapper">
             <div class="container-xxl flex-grow-1 container-p-y">
               <h4 class="py-3 breadcrumb-wrapper mb-4"><span class="text-muted fw-light">Traffic Video /</span> Live View</h4>
-              <div>
-                <h3 >After clicking, wait for 2 seconds</h3>
-                  <button id="myButton"  class="btn btn-primary  mb-4"  value="Capture">Click Me</button>
-                  <?php  $user_deviceId=$user_data->device_number;
-                     $image_path= base_url('Frames/' . $user_deviceId . '/frame1.jpeg');
-                  ?>
-                  <img src="<?php echo $image_path;?>" id="liveVideo" width="100%" height="650px" />
-              </div>
+              <?php
+              if($kit_live_status==0){ ?>
+                <div class="alert alert-danger alert-dismissible mb-4" role="alert">
+                <div class="fw-bold">Kit Status</div>
+                <ul class="list-unstyled mb-0">
+                <li>- Power off, unable to show live View.</li>
+                </ul>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+              <?php
+              } else{ ?>
+                <div>
+                  <h3 >After clicking, wait for 5 seconds</h3>
+                    <button id="myButton"  class="btn btn-primary  mb-4"  value="Capture">Capture</button>
+                    <?php  $user_deviceId=$user_data->device_number;
+                       $image_path= base_url('Frames/' . $user_deviceId . '/frame1.jpeg');
+                    ?>
+                    <img src="<?php echo $image_path;?>" id="liveVideo" width="100%" height="650px" />
+                </div>
+              <?php } ?>
+
             </div>
             <div class="content-backdrop fade"></div>
         </div>
@@ -61,27 +89,29 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-  $(document).ready(function () {
-    $('#myButton').click(function () {
-
-      var buttonValue = $(this).val();
-      $.ajax({
-        type: 'POST',
-        url: 'User/capture_frame',
-        data: { buttonValue: buttonValue },
-        success: function (response) {
-          console.log(response);
-          setTimeout(function () {
-            location.reload();
-          }, 3000);
-
-        },
-        error: function (xhr, status, error) {
-          console.error(error);
-        }
-      });
+$(document).ready(function () {
+  $('#myButton').click(function () {
+    $(this).prop('disabled', true);
+    $(this).html('<i class="fa fa-spinner fa-spin" ></i>Loading...');
+    var buttonValue = $(this).val();
+    $.ajax({
+      type: 'POST',
+      url: 'User/capture_frame',
+      data: { buttonValue: buttonValue },
+      success: function (response) {
+        setTimeout(function () {
+          location.reload();
+          $('#myButton').prop('disabled', false)
+        }, 3000);
+      },
+      error: function (xhr, status, error) {
+        console.error(error);
+      }
     });
   });
+});
+
+
 </script>
 
 

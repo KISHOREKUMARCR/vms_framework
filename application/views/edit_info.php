@@ -41,7 +41,7 @@
                   </ul>
 
                   <div class="card mb-4">
-                   
+
                     <!-- Ac count -->
                     <form id="formAccountSettings" method="POST" action="<?php echo base_url();?>User/edit_info" enctype="multipart/form-data">
                     <div class="card-body">
@@ -58,14 +58,14 @@
                     <?php } ?>
                       <div class="d-flex align-items-start align-items-sm-center gap-4">
                         <img src="<?php echo base_url();?>assets/img/upload_image/<?php echo isset($vms_users_data['profile']) ? $vms_users_data['profile'] : ''; ?>" alt="user-avatar"class="d-block rounded"height="100"width="100"id="uploadedAvatar" />
-                        
+
                         <div class="button-wrapper">
                           <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
                             <span class="d-none d-sm-block">Upload new photo</span>
                             <i class="bx bx-upload d-block d-sm-none"></i>
                             <input type="file" id="upload" class="account-file-input" hidden name="upload_img" />
                           </label>
-                         
+
 
                           <p class="mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
                         </div>
@@ -73,7 +73,7 @@
                     </div>
                     <hr class="my-0" />
                     <div class="card-body">
-  
+
                         <div class="row">
                         <h5 class="mb-3 font-weight-bold">User Details</h5>
                           <div class="mb-3 col-md-6">
@@ -81,7 +81,7 @@
                             <input class="form-control"type="text"id="firstName" name="username"value="<?php echo isset($vms_users_data['username']) ? $vms_users_data['username'] : ''; ?>"autofocus />
                               <!-- <?php echo form_error('username', '<div class="text-danger">', '</div>'); ?> -->
                           </div>
-                          
+
 
                           <div class="mb-3 col-md-6">
                             <label for="lastName" class="form-label">Device Id</label>
@@ -103,10 +103,11 @@
                           <label class="form-label" for="phone-number-mask">Phone Number</label>
                           <div class="input-group">
                           <span class="input-group-text">IND (+91)</span>
-                          <input  type="text"id="phone"name="phoneNumber1"class="form-control phone-number-mask" value="<?php echo isset($vms_users_data['phone']) ? $vms_users_data['phone'] : ''; ?>" />                          
+                          <input  type="text"id="phone"name="phoneNumber1"class="form-control phone-number-mask" value="<?php echo isset($vms_users_data['phone']) ? $vms_users_data['phone'] : ''; ?>" />
                           </div>
                           <?php echo form_error('phoneNumber1', '<div class="text-danger">', '</div>'); ?>
                           </div>
+
 
                           <div class="mb-3 col-md-6">
                             <label for="address" class="form-label">Address</label>
@@ -127,7 +128,7 @@
                             <input type="text"class="form-control"id="zipCode"name="zipCode"placeholder="231465"value="<?php echo isset($vms_users_data['zipcode']) ? $vms_users_data['zipcode'] : ''; ?>" maxlength="6" />
                             <?php echo form_error('zipCode', '<div class="text-danger">', '</div>'); ?>
                           </div>
-                          
+
                           <div class="mb-3 col-md-6">
                             <label class="form-label" for="country">Country</label>
                             <select id="country" class="select2 form-select" name="country" ><option value="India" selected>India</option></select>
@@ -190,7 +191,7 @@
 
                           <input type="submit" class="btn btn-primary me-2">
                         </div>
-                      
+
                     </div>
                     </form>
                     <!-- /Account -->
@@ -222,6 +223,6 @@
     <script src="<?php echo base_url();?>assets/vendor/libs/formvalidation/dist/js/FormValidation.min.js"></script>
     <script src="<?php echo base_url();?>assets/vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js"></script>
     <script src="<?php echo base_url();?>assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js"></script>
-    
+
     <script src="<?php echo base_url();?>assets/js/pages-auth.js"></script>
 </html>
