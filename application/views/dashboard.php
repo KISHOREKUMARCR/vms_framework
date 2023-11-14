@@ -95,16 +95,6 @@ float:inline-end;
 
               <div class="row gy-4">
 
-              <?php
-                if($kit_live_status==0){?>
-              <div class="alert alert-danger alert-dismissible mb-4" role="alert">
-              <div class="fw-bold">Kit Status</div>
-              <ul class="list-unstyled mb-0">
-              <li>- Power off, unable to show device information.</li>
-              </ul>
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-              </div>
-            <?php } else{ ?>
               <div class="col-md-6 col-lg-6 mb-4 mb-md-0">
                   <div class="card h-100">
                     <div class="card-header d-flex justify-content-between align-items-center">
@@ -282,7 +272,6 @@ float:inline-end;
                 </div>
               </div>
             </div>
-            <?php   }?>
 
 
 

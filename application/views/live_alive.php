@@ -48,17 +48,23 @@ $kit_live_status=1;
               <h4 class="py-3 breadcrumb-wrapper mb-4"><span class="text-muted fw-light">Traffic Video /</span> Live View</h4>
               <?php
               if($kit_live_status==0){ ?>
-                <div class="alert alert-danger alert-dismissible mb-4" role="alert">
-                <div class="fw-bold">Kit Status</div>
-                <ul class="list-unstyled mb-0">
-                <li>- Power off, unable to show live View.</li>
-                </ul>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <div>
+                  <h3 >Power OFF, unable to show live View</h3>
+                  <div class="alert alert-danger alert-dismissible mb-4" role="alert">
+                  <div class="fw-bold">Kit Status</div>
+                  <ul class="list-unstyled mb-0">
+                  <li>- Power off, Unable to show live View.</li>
+                  </ul>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                  <img src="<?php echo base_url();?>assets/img/stream_offline.png" id="liveVideo" width="100%" height="620px" />
                 </div>
+
+
               <?php
               } else{ ?>
                 <div>
-                  <h3 >After clicking, wait for 5 seconds</h3>
+                  <h3 >After clicking, wait for 10  seconds</h3>
                     <button id="myButton"  class="btn btn-primary  mb-4"  value="Capture">Capture</button>
                     <?php  $user_deviceId=$user_data->device_number;
                        $image_path= base_url('Frames/' . $user_deviceId . '/frame1.jpeg');
@@ -102,7 +108,7 @@ $(document).ready(function () {
         setTimeout(function () {
           location.reload();
           $('#myButton').prop('disabled', false)
-        }, 3000);
+        }, 10000);
       },
       error: function (xhr, status, error) {
         console.error(error);
