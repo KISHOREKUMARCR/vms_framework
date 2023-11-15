@@ -41,7 +41,7 @@ class Admin extends CI_Controller{
         }
     }
     public function getalluserlist(){
-      $json_file_path = 'JsonData/alluserlist.json';
+        $json_file_path = 'JsonData/alluserlist.json';
         if (file_exists($json_file_path))
         {
               $json_data=file_get_contents($json_file_path);
@@ -67,10 +67,30 @@ class Admin extends CI_Controller{
 
 
     public function userlist(){
-        $data= $this->Admin_model->get_user_details();
-        $json_alldata = array(
-        'data'=>$data
-        );
+        $data = $this->Admin_model->get_user_details();
+        $json_alldata = array('data' => array());
+
+        foreach ($data as $value) {
+            $iterate_deviceid = $value['device_number'];
+            $iterate_datatime = $this->User_model->getRaspiData($iterate_deviceid);
+            $iterate_modifytime = $iterate_datatime['modify_time'];
+
+            date_default_timezone_set('Asia/Kolkata');
+
+            $lastModificationTimestamp = strtotime($iterate_modifytime);
+            $currentTimestamp = time();
+            $timeDifference = $currentTimestamp - $lastModificationTimestamp;
+            $powerOffThreshold = 1 * 60;
+
+            if ($timeDifference >= $powerOffThreshold) {
+                $kit_live_status = 0;
+            } else {
+                $kit_live_status = 1;
+            }
+            $value['kit_live_status'] = $kit_live_status;
+            $json_alldata['data'][] = $value;
+        }
+
         $json_data = json_encode($json_alldata,JSON_PRETTY_PRINT);
         $folderPath='JsonData/';
         if (!file_exists($folderPath)){

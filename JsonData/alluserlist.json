@@ -8,12 +8,13 @@
             "device_number": "COSAI_VMS_456",
             "live_switch": "Capture",
             "time": "2023-11-07 16:18:50",
-            "phone": "2147483647",
+            "phone": "712348207",
             "address": "MADURAI",
             "state": "kerala",
             "zipcode": "456123",
             "country": "India",
-            "profile": "user-145.jpg"
+            "profile": "user-145.jpg",
+            "kit_live_status": 0
         },
         {
             "id": "38",
@@ -28,7 +29,8 @@
             "state": "tamilnadu",
             "zipcode": "12345",
             "country": "India",
-            "profile": "ipcamera24.png"
+            "profile": "ipcamera24.png",
+            "kit_live_status": 1
         },
         {
             "id": "39",
@@ -43,7 +45,8 @@
             "state": "tamilnadu",
             "zipcode": "123456",
             "country": "India",
-            "profile": "ipcamera1.png"
+            "profile": "ipcamera1.png",
+            "kit_live_status": 1
         }
     ]
 }

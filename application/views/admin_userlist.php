@@ -143,6 +143,7 @@
                         <th>User Email</th>
                         <th>User Password</th>
                         <th>User Device Number</th>
+                        <th> Device Status</th>
                         <th>User Profile</th>
                         <th>Actions</th>
                       </tr>
@@ -225,6 +226,23 @@ if (groupingTable.length) {
       { data: 'email' },
       { data: 'password' },
       { data: 'device_number' },
+      {
+        data: 'kit_live_status',
+        render: function (data, type, full, meta) {
+           var statusInfo = {
+             0: { title: 'Offline', class: 'bg-label-danger ' },
+             1: { title: 'Online', class: 'bg-label-success' }
+           };
+
+           return (
+             '<span class="badge rounded-pill ' +
+             statusInfo[data].class +
+             '">' +
+             statusInfo[data].title +
+             '</span>'
+           );
+         }
+      },
       {
         data: 'profile',
         render: function (data, type, full, meta) {
