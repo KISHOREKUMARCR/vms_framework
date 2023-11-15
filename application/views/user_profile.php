@@ -20,7 +20,8 @@
     <link rel="stylesheet" href="<?php echo base_url();?>assets/vendor/libs/formvalidation/dist/css/formValidation.min.css" />
     <link rel="stylesheet" href="<?php echo base_url();?>assets/vendor/css/pages/page-auth.css" />
     <link rel="stylesheet" href="<?php echo base_url();?>assets/vendor/css/pages/page-profile.css" />
- 
+    <script src="<?php echo base_url();?>assets/vendor/js/helpers.js"></script>
+    <script src="<?php echo base_url();?>assets/js/config.js"></script>
 </head>
 <body>
 <div class="layout-wrapper layout-content-navbar">
@@ -31,7 +32,7 @@
         <div class="content-wrapper">
             <div class="container-xxl flex-grow-1 container-p-y">
               <h4 class="py-3 breadcrumb-wrapper mb-4"><span class="text-muted fw-light">Account /</span> User Profile</h4>
-         
+
             <!-- Header -->
             <div class="row">
                 <div class="col-12">
@@ -49,13 +50,13 @@
                           <div class="user-profile-info">
                             <h4><?php echo isset($vms_users_data['username']) ? $vms_users_data['username'] : ''; ?></h4>
                             <ul class="list-inline mb-0 d-flex align-items-center flex-wrap justify-content-sm-start justify-content-center gap-2">
-            
+
                               <li class="list-inline-item fw-semibold">
                                 <i class="bx bx-calendar-alt"></i> Joined <?php echo isset($vms_users_data['time']) ? $vms_users_data['time'] : ''; ?>
                               </li>
                             </ul>
                           </div>
-                          
+
                         </div>
                       </div>
                     </div>
@@ -71,8 +72,8 @@
                     <li class="nav-item">
                       <a class="nav-link active" href="javascript:void(0);"><i class="bx bx-user me-1"></i> Profile</a>
                     </li>
-                    
-                    
+
+
                   </ul>
                 </div>
               </div>
@@ -110,34 +111,34 @@
                           <i class="bx bx-phone"></i><span class="fw-semibold mx-2">Contact:</span>
                           <span><?php echo isset($vms_users_data['phone']) ? $vms_users_data['phone'] : ''; ?></span>
                         </li>
-                       
+
                         <li class="d-flex align-items-center mb-3">
                           <i class="bx bx-envelope"></i><span class="fw-semibold mx-2">Email:</span>
                           <span><?php echo isset($vms_users_data['email']) ? $vms_users_data['email'] : ''; ?></span>
                         </li>
                       </ul>
-                     
+
                     </div>
                   </div>
-              
+
                 </div>
-             
+
                 <div class="col-xl-8 col-lg-7 col-md-7">
                   <!-- Activity Timeline -->
                   <div class="card card-action mb-4">
                     <div class="card-header align-items-center">
                       <h5 class="card-action-title mb-0"><i class="bx bx-list-ul bx-sm me-2"></i>CLIENT DETAILS</h5>
-                      
+
                     </div>
                     <div class="card-body">
                       <ul class="timeline ms-2">
-                        
+
 
                         <li class="timeline-item timeline-item-transparent">
                           <span class="timeline-point timeline-point-warning"></span>
                           <div class="timeline-event">
                             <div class="timeline-header mb-1">
-                              <h6 class="mb-0">Google Drive Detail's:</h6>                            
+                              <h6 class="mb-0">Google Drive Detail's:</h6>
                             </div>
                             <p class="mb-2">Mail Id:  <span class="fw-semibold mx-2"><?php echo isset($vms_drive_data['google_drive_email']) ? $vms_drive_data['google_drive_email'] : ''; ?></span></p>
                             <p class="mb-2">Mail password: <span class="fw-semibold mx-2"><?php echo "*********";?></span></p>
@@ -151,10 +152,10 @@
                           <span class="timeline-point timeline-point-info"></span>
                           <div class="timeline-event">
                             <div class="timeline-header mb-1">
-                              <h6 class="mb-0">Rasbperry PI Details:</h6>                              
-                            </div>    
+                              <h6 class="mb-0">Rasbperry PI Details:</h6>
+                            </div>
                             <p class="mb-2">SSID:  <span class="fw-semibold mx-2"><?php echo isset($vms_drive_data['raspi_ssid']) ? $vms_drive_data['raspi_ssid'] : ''; ?></span></p>
-                            <p class="mb-2">RASPI Password:   <span class="fw-semibold mx-2"><?php echo "*********";?></span></p>                      
+                            <p class="mb-2">RASPI Password:   <span class="fw-semibold mx-2"><?php echo "*********";?></span></p>
                           </div>
                         </li>
 
@@ -163,12 +164,12 @@
                           <span class="timeline-point timeline-point-primary"></span>
                           <div class="timeline-event">
                             <div class="timeline-header mb-1">
-                              <h6 class="mb-0">VNC Viewer Details:</h6>                              
+                              <h6 class="mb-0">VNC Viewer Details:</h6>
                             </div>
-                            <p class="mb-2">VNC Username: <span class="fw-semibold mx-2"><?php echo isset($vms_drive_data['vnc_name']) ? $vms_drive_data['vnc_name'] : ''; ?></span></p> 
-                            <p class="mb-2">VNC Password:<span class="fw-semibold mx-2"><?php echo isset($vms_drive_data['vnc_password']) ? $vms_drive_data['vnc_password'] : ''; ?></span></p>    
+                            <p class="mb-2">VNC Username: <span class="fw-semibold mx-2"><?php echo isset($vms_drive_data['vnc_name']) ? $vms_drive_data['vnc_name'] : ''; ?></span></p>
+                            <p class="mb-2">VNC Password:<span class="fw-semibold mx-2"><?php echo isset($vms_drive_data['vnc_password']) ? $vms_drive_data['vnc_password'] : ''; ?></span></p>
                           </div>
-                        </li>                        
+                        </li>
                         <li class="timeline-end-indicator">
                           <i class="bx bx-check-circle"></i>
                         </li>
@@ -176,8 +177,8 @@
                     </div>
                   </div>
               </div>
-             
-            
+
+
             </div>
             <div class="content-backdrop fade"></div>
         </div>
@@ -187,21 +188,15 @@
     <div class="drag-target"></div>
 </div>
 </body>
-    <script src="<?php echo base_url();?>assets/vendor/js/helpers.js"></script>
-    <!-- <script src="<?php echo base_url();?>assets/vendor/js/template-customizer.js"></script>
-    <script src="<?php echo base_url();?>assets/js/config.js"></script>
-    <script src="<?php echo base_url();?>assets/js/main.js"></script> -->
-    <script src="<?php echo base_url();?>assets/vendor/libs/jquery/jquery.js"></script>
-    <script src="<?php echo base_url();?>assets/vendor/libs/popper/popper.js"></script>
-    <script src="<?php echo base_url();?>assets/vendor/js/bootstrap.js"></script>
-    <script src="<?php echo base_url();?>assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-    <script src="<?php echo base_url();?>assets/vendor/libs/hammer/hammer.js"></script>
-    <script src="<?php echo base_url();?>assets/vendor/libs/i18n/i18n.js"></script>
-    <script src="<?php echo base_url();?>assets/vendor/libs/typeahead-js/typeahead.js"></script>
-    <script src="<?php echo base_url();?>assets/vendor/js/menu.js"></script>
-    <script src="<?php echo base_url();?>assets/vendor/libs/formvalidation/dist/js/FormValidation.min.js"></script>
-    <script src="<?php echo base_url();?>assets/vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js"></script>
-    <script src="<?php echo base_url();?>assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js"></script>
-    
-    <script src="<?php echo base_url();?>assets/js/pages-auth.js"></script>
+<script src="<?php echo base_url();?>assets/vendor/libs/jquery/jquery.js"></script>
+<script src="<?php echo base_url();?>assets/vendor/libs/popper/popper.js"></script>
+<script src="<?php echo base_url();?>assets/vendor/js/bootstrap.js"></script>
+<script src="<?php echo base_url();?>assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="<?php echo base_url();?>assets/vendor/libs/hammer/hammer.js"></script>
+<script src="<?php echo base_url();?>assets/vendor/libs/i18n/i18n.js"></script>
+<script src="<?php echo base_url();?>assets/vendor/libs/typeahead-js/typeahead.js"></script>
+<script src="<?php echo base_url();?>assets/vendor/js/menu.js"></script>
+<script src="<?php echo base_url();?>assets/vendor/libs/apex-charts/apexcharts.js"></script>
+<script src="<?php echo base_url();?>assets/js/main.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </html>

@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,6 +19,9 @@
     <link rel="stylesheet" href="<?php echo base_url();?>assets/vendor/libs/typeahead-js/typeahead.css" />
     <link rel="stylesheet" href="<?php echo base_url();?>assets/vendor/libs/formvalidation/dist/css/formValidation.min.css" />
     <link rel="stylesheet" href="<?php echo base_url();?>assets/vendor/css/pages/page-auth.css" />
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/vendor/css/pages/page-profile.css" />
+    <script src="<?php echo base_url();?>assets/vendor/js/helpers.js"></script>
+    <script src="<?php echo base_url();?>assets/js/config.js"></script>
 </head>
 <body>
 <div class="layout-wrapper layout-content-navbar">
@@ -208,21 +209,15 @@
     <div class="drag-target"></div>
 </div>
 </body>
-    <script src="<?php echo base_url();?>assets/vendor/js/helpers.js"></script>
-    <!-- <script src="<?php echo base_url();?>assets/vendor/js/template-customizer.js"></script>
-    <script src="<?php echo base_url();?>assets/js/config.js"></script>
-    <script src="<?php echo base_url();?>assets/js/main.js"></script> -->
-    <script src="<?php echo base_url();?>assets/vendor/libs/jquery/jquery.js"></script>
-    <script src="<?php echo base_url();?>assets/vendor/libs/popper/popper.js"></script>
-    <script src="<?php echo base_url();?>assets/vendor/js/bootstrap.js"></script>
-    <script src="<?php echo base_url();?>assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-    <script src="<?php echo base_url();?>assets/vendor/libs/hammer/hammer.js"></script>
-    <script src="<?php echo base_url();?>assets/vendor/libs/i18n/i18n.js"></script>
-    <script src="<?php echo base_url();?>assets/vendor/libs/typeahead-js/typeahead.js"></script>
-    <script src="<?php echo base_url();?>assets/vendor/js/menu.js"></script>
-    <script src="<?php echo base_url();?>assets/vendor/libs/formvalidation/dist/js/FormValidation.min.js"></script>
-    <script src="<?php echo base_url();?>assets/vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js"></script>
-    <script src="<?php echo base_url();?>assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js"></script>
-
-    <script src="<?php echo base_url();?>assets/js/pages-auth.js"></script>
+<script src="<?php echo base_url();?>assets/vendor/libs/jquery/jquery.js"></script>
+<script src="<?php echo base_url();?>assets/vendor/libs/popper/popper.js"></script>
+<script src="<?php echo base_url();?>assets/vendor/js/bootstrap.js"></script>
+<script src="<?php echo base_url();?>assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="<?php echo base_url();?>assets/vendor/libs/hammer/hammer.js"></script>
+<script src="<?php echo base_url();?>assets/vendor/libs/i18n/i18n.js"></script>
+<script src="<?php echo base_url();?>assets/vendor/libs/typeahead-js/typeahead.js"></script>
+<script src="<?php echo base_url();?>assets/vendor/js/menu.js"></script>
+<script src="<?php echo base_url();?>assets/vendor/libs/apex-charts/apexcharts.js"></script>
+<script src="<?php echo base_url();?>assets/js/main.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </html>
