@@ -28,6 +28,16 @@ class User_model extends CI_Model {
       return $query->num_rows();
 
     }
+
+
+    public function get_admin_credentials(){
+    $this->db->select("email, password");
+    $result = $this->db->get('admin_info');
+    return $result->result_array();
+    }
+
+
+
     public function saveOrUpdateDriveData($client_id, $drive_data) {
         $existing_data = $this->getDriveData($client_id);
 
@@ -55,6 +65,14 @@ class User_model extends CI_Model {
       $query=$this->db->update('vms_users',$switch_data);
       return $query;
     }
+
+    public function UpdatePassword($client_kitid, $update_password){
+
+      $this->db->where('device_number',$client_kitid);
+      $query=$this->db->update('vms_users',$update_password);
+      return $query;
+    }
+
     public function getVmsDriveData($client_id){
         $this->db->select('*');
         $this->db->from('vms_drive');
@@ -96,7 +114,8 @@ class User_model extends CI_Model {
         return $query->row_array();
     }
     public function check_login($userData) {
-        $query = $this->db->get_where('vms_users', array('email' => $userData['email'],'password'=> $userData['password']) );
+        $query = $this->db->get_where('vms_users', array('device_number' => $userData['device_number'],'password'=> $userData['password']) );
+
         if ($this->db->affected_rows() > 0)
          {
             return [

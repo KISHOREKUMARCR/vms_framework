@@ -56,8 +56,8 @@
             <div class="flex-row text-center mx-auto">
                 <img src="<?php echo base_url();?>assets\img\user_login.png" width="350" class="img-fluid ">
                 <div class="mx-auto "><br>
-                    <h3>AI Based Video Management System 🥳</h3>
-                    <p>Perfectly suited for traffic analytical <br /></p>
+                    <h3>Video Management System 🥳</h3>
+                    <!-- <p>Perfectly suited for traffic analytical <br /></p> -->
                 </div>
             </div>
         </div>
@@ -76,9 +76,9 @@
                 <?php } ?>
                 <form id="formAuthentication" class="mb-3" action="<?php echo base_url();?>" method="POST">
                 <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email" autofocus />
-                    <span class="error"><?php echo form_error('email'); ?></span>
+                    <label for="device_id" class="form-label">Device ID</label>
+                    <input type="text" class="form-control" id="device_id" name="device_id" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" autofocus />
+                    <span class="error"><?php echo form_error('device_id'); ?></span>
                 </div>
                 <div class="mb-3 form-password-toggle">
                     <div class="d-flex justify-content-between">
@@ -102,7 +102,7 @@
                 <input type='submit'  class="btn btn-primary d-grid w-100" class="submitsignin" value="Sign in">
                 </form>
                 <!-- <p class="text-center"> <span>New on our platform?</span><a href="auth-register-cover.php"> <span>Create an account</span></a></p> -->
-                <div class="divider my-4">
+                <!-- <div class="divider my-4">
                     <div class="divider-text">Visit Our platform</div>
                 </div>
 
@@ -110,8 +110,7 @@
                     <a href="https://www.facebook.com/cosaimadurai" class="btn btn-icon btn-label-facebook me-3"><i class="tf-icons bx bxl-facebook"></i></a>
                     <a href="https://www.linkedin.com/in/cosai/" class="btn btn-icon btn-label-linkedin me-3"><i class="tf-icons bx bxl-linkedin"></i></a>
                     <a href="#" class="btn btn-icon btn-label-twitter"><i class="tf-icons bx bxl-twitter"></i></a>
-                </div>
-
+                </div> -->
 
             </div>
         </div>

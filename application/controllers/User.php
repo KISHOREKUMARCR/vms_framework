@@ -14,7 +14,10 @@ class User extends CI_Controller{
     }
     public function index()
     {
-        $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+
+
+
+        $this->form_validation->set_rules('device_id', 'device_id', 'required');
         $this->form_validation->set_rules('password', 'Password', 'required');
 
         if ($this->form_validation->run() == FALSE)
@@ -24,9 +27,21 @@ class User extends CI_Controller{
         else
         {
             $login_data = array(
-                'email' => $this->input->post('email'),
+                'device_number' => $this->input->post('device_id'),
                 'password' => $this->input->post('password'),
             );
+
+            $adminCredentials = $this->User_model->get_admin_credentials();
+            foreach ($adminCredentials as $admin) {
+            $admin_email = $admin['email'];
+            $admin_password = $admin['password'];
+            }
+
+            if($this->input->post('device_id')==$admin_email &&  $this->input->post('password')==  $admin_password){
+              $user_data = $result['data'];
+              $this->session->set_userdata('user_data', $user_data);
+              redirect('admin_userlist');
+            }
             $result = $this->User_model->check_login($login_data);
             if ($result['status'] === TRUE)
             {
@@ -35,12 +50,70 @@ class User extends CI_Controller{
                 redirect('dashboard');
             }
             else{
-                $this->session->set_flashdata('login_error', 'Invalid email or password.');
+                $this->session->set_flashdata('login_error', 'Invalid Device ID or password.');
                 $this->load->view('user_login');
             }
         }
     }
 
+    public function update_password() {
+      $user_data = $this->session->userdata('user_data');
+      $client_id = $user_data->id;
+      $device_number = $user_data->device_number;
+      $vms_users_data = $this->User_model->getVmsUsersData($client_id);
+
+      $all_data = array(
+          'vms_users_data' => $vms_users_data
+      );
+      $original_password = $vms_users_data['password'];
+
+    $this->form_validation->set_rules('current_password', 'Current Password', 'required');
+    $this->form_validation->set_rules('new_password', 'New Password', 'required|min_length[4]');
+    $this->form_validation->set_rules('confirm_password', 'Confirm Password', 'required|matches[new_password]');
+
+
+      if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+          if ($this->form_validation->run() == true) {
+              $entered_current_password = $this->input->post('current_password');
+
+              if ($entered_current_password === $original_password) {
+                  $new_password=$this->input->post('new_password');
+                  $update_password=array(
+                    'password'=>  $new_password
+                  );
+
+                  $user_data_updated = $this->User_model->UpdatePassword($device_number,$update_password);
+
+                  if ($user_data_updated) {
+                      $this->session->set_flashdata('success', "Password Successfully Updated!");
+                      redirect('change_pass');
+                  } else {
+                      $this->session->set_flashdata('error', "Failed to Update Password");
+                      redirect('change_pass');
+                  }
+
+
+              } else {
+                  $this->session->set_flashdata('error', 'Current password is incorrect.');
+                  redirect('change_pass');
+              }
+          } else {
+              $this->session->set_flashdata('error', validation_errors());
+              redirect('change_pass');
+          }
+      }
+  }
+
+
+    public function change_pass(){
+      $user_data = $this->session->userdata('user_data');
+      $client_id = $user_data->id;
+      $vms_users_data = $this->User_model->getVmsUsersData($client_id);
+      $all_data = array(
+      'vms_users_data' => $vms_users_data
+      );
+      $this->load->view('update_password',$all_data);
+    }
     public function register() {
         $this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[4]|max_length[50]');
         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
@@ -117,8 +190,8 @@ class User extends CI_Controller{
         $this->form_validation->set_rules('google_drive_secretkey', 'Cloud Key', 'required');
         $this->form_validation->set_rules('raspi_ssid', 'Kit SSID', 'required');
         $this->form_validation->set_rules('raspi_pass', 'Kit Password', 'required');
-        $this->form_validation->set_rules('vnc_username', 'VNC Username', 'required');
-        $this->form_validation->set_rules('vnc_pass', 'VNC Password', 'required');
+        // $this->form_validation->set_rules('vnc_username', 'VNC Username', 'required');
+        // $this->form_validation->set_rules('vnc_pass', 'VNC Password', 'required');
 
         $vms_drive_data = $this->User_model->getVmsDriveData($client_id);
         $vms_users_data = $this->User_model->getVmsUsersData($client_id);
@@ -201,6 +274,8 @@ class User extends CI_Controller{
     }
 
 
+
+
     public function report(){
 
         $user_data = $this->session->userdata('user_data');
@@ -255,13 +330,21 @@ class User extends CI_Controller{
 
 
     public function live_view(){
+
         $user_data = $this->session->userdata('user_data');
         $client_kitid=$user_data->device_number;
 
         $user_raspi_data=$this->User_model->getRaspiData($client_kitid);
+        if ($user_raspi_data){
+          $kit_exits=1;
+        }else{
+          $kit_exits=0;
+        }
+
         $userInfo = array(
         'users_raspidata' =>$user_raspi_data,
-        'client_kitid' =>$client_kitid
+        'client_kitid' =>$client_kitid,
+        'kit_exits' =>$kit_exits
         );
 
         $this->load->view('live_alive',$userInfo);

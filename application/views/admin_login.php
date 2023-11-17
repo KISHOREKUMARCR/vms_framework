@@ -96,7 +96,7 @@
                 <button class="btn btn-primary d-grid w-100">Sign in</button>
                 </form>
 
-                <div class="divider my-4">
+                <!-- <div class="divider my-4">
                     <div class="divider-text">Visit Our platform</div>
                 </div>
 
@@ -104,7 +104,7 @@
                     <a href="https://www.facebook.com/cosaimadurai" class="btn btn-icon btn-label-facebook me-3"><i class="tf-icons bx bxl-facebook"></i></a>
                     <a href="https://www.linkedin.com/in/cosai/" class="btn btn-icon btn-label-linkedin me-3"><i class="tf-icons bx bxl-linkedin"></i></a>
                     <a href="#" class="btn btn-icon btn-label-twitter"><i class="tf-icons bx bxl-twitter"></i></a>
-                </div>
+                </div> -->
 
 
             </div>

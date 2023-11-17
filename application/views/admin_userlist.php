@@ -134,6 +134,7 @@
                     </div>
                   </div>
                 </div>
+                
                 <div class="card-datatable table-responsive pt-0">
                   <table class="dt-row-grouping table table-bordered" id='example'>
                     <thead>
@@ -141,7 +142,7 @@
                         <th>S.No</th>
                         <th>User Name</th>
                         <th>User Email</th>
-                        <th>User Password</th>
+                        <!-- <th>User Password</th> -->
                         <th>User Device Number</th>
                         <th> Device Status</th>
                         <th>User Profile</th>
@@ -224,7 +225,7 @@ if (groupingTable.length) {
       },
       { data: 'username' },
       { data: 'email' },
-      { data: 'password' },
+      // { data: 'password' },
       { data: 'device_number' },
       {
         data: 'kit_live_status',
@@ -261,7 +262,7 @@ if (groupingTable.length) {
             '<div class="dropdown-menu dropdown-menu-end">' +
             '<a class="dropdown-item" href="<?php echo base_url();?>admin/edituser?id=' + data + '"><i class="bx bx-edit-alt me-1"></i> Edit</a>' +
             '<a class="dropdown-item" href="<?php echo base_url();?>admin/deleteuser?id=' + data + '"><i class="bx bx-trash me-1"></i> Delete</a>' +
-            '<a class="dropdown-item" href="<?php echo base_url();?>admin/userlogin?id=' + data + '" target="blank"><i class="bx bx-log-in me-1"></i> Login</a>' +
+            '<a class="dropdown-item" href="<?php echo base_url();?>admin/userlogin?id=' + data + '" target="_blank"><i class="bx bx-log-in me-1"></i> Login</a>' +
             '</div>' +
             '</div>' +
             '</div>'

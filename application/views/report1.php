@@ -72,11 +72,13 @@
                           <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
                           <div class="modal-body">
                               <iframe id="iframeContent" width="100%" height="500" src="" allowfullscreen></iframe>
+                              <div style="width: 80px; height: 80px; position: absolute; right: 10px; top: 30px;">
+                              <img src="<?php echo base_url(); ?>assets/img/cosai.png" width="60px" height="60px" style="background-color: floralwhite;">
+                              </div>
                           </div>
                       </div>
                   </div>
               </div>
-
               <!-- Row grouping -->
               <div class="card">
                 <h5 class="card-header">Video Reports</h5>
@@ -137,71 +139,87 @@
     <script src="<?php echo base_url(); ?>assets/js/modal-edit-permission.js"></script>
     <!-- Page JS -->
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
 
     <script>
-    $(function () {
-    var groupingTable = $('.dt-row-grouping'),
-    groupColumn = 1; // Replace with the actual index of the column you want to group by
+        $(function () {
+            var groupingTable = $('.dt-row-grouping'),
+                groupColumn = 1; // Replace with the actual index of the column you want to group by
 
-    if (groupingTable.length) {
-      var dt_grouping = groupingTable.DataTable({
-        ajax: {
-          url: "<?php echo base_url('User/getJsonData'); ?>",
-          type: "POST"
-        },
-        columns: [
-            {
-                data: null,
-                render: function(data, type, full, meta) {
-                    return meta.row + 1;
-                }
-            },
-            { data: 'file_name' },
-            { data: 'start_time' },
-            {
-                targets: -2,
-                render: function (data, type, full, meta) {
-                    var $status_number =1;
-                    var $status = {
-                      1: { title: 'Completed', class: ' bg-label-success' }
-                    };
-                    return (
-                      '<span class="badge rounded-pill ' +
-                      $status[$status_number].class +
-                      '">' +
-                      $status[$status_number].title +
-                      '</span>'
-                    );
-                }
-            },
-            {
-                targets: -1,
-                data: 'file_url',
-                title: 'Actions',
-                searchable: false,
-                orderable: false,
-                render: function (data, type, full, meta) {
-                  return (
-                      '<div class="d-flex align-items-center">' +
-                      '<a href="mailto:?subject=Check out this video&body=Here\'s the link to the video on Google Drive: ' + data + '"  role="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Send Mail"><i class="bx bx-send mx-1"></i></a>' +
-                      '<a href="javascript:;" class="text-body open-modal" data-bs-toggle="tooltip" data-bs-placement="top" data-modal-src="' + data + '" title="Preview Invoice"><i class="bx bx-show mx-1"></i></a>' +
-                      '</div>'
-                  );
-                }
+            if (groupingTable.length) {
+                var dt_grouping = groupingTable.DataTable({
+                    ajax: {
+                        url: "<?php echo base_url('User/getJsonData'); ?>",
+                        type: "POST"
+                    },
+                    columns: [
+                        {
+                            data: null,
+                            render: function (data, type, full, meta) {
+                                return meta.row + 1;
+                            }
+                        },
+                        { data: 'file_name' },
+                        { data: 'start_time' },
+                        {
+                            targets: -2,
+                            render: function (data, type, full, meta) {
+                                var $status_number = 1;
+                                var $status = {
+                                    1: { title: 'Completed', class: ' bg-label-success' }
+                                };
+                                return (
+                                    '<span class="badge rounded-pill ' +
+                                    $status[$status_number].class +
+                                    '">' +
+                                    $status[$status_number].title +
+                                    '</span>'
+                                );
+                            }
+                        },
+                        {
+                            targets: -1,
+                            data: 'file_url',
+                            title: 'Actions',
+                            searchable: false,
+                            orderable: false,
+                            render: function (data, type, full, meta) {
+                                return (
+                                    '<div class="d-flex align-items-center">' +
+                                  
+                                    '<a href="javascript:;" class="text-body open-modal" data-bs-toggle="tooltip" data-bs-placement="top" data-modal-src="' + data + '" title="Preview Invoice"><i class="bx bx-show mx-1"></i></a>' +
+                                    '<a href="javascript:;" class="text-body copy-to-clipboard" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy to Clipboard" data-clipboard-text="' + data + '"><i class="bx bx-copy mx-1"></i></a>' +
+                                    '</div>'
+                                );
+                            }
+                        }
+                    ],
+                    order: [[groupColumn, 'asc']]
+                });
 
+                // Initialize Clipboard.js for copy-to-clipboard functionality
+                var clipboard = new ClipboardJS('.copy-to-clipboard');
+
+                clipboard.on('success', function (e) {
+                    // Provide feedback, e.g., tooltip or alert
+                    console.log('Text copied to clipboard: ' + e.text);
+                    e.clearSelection();
+                });
+
+                clipboard.on('error', function (e) {
+                    // Handle errors
+                    console.error('Error copying to clipboard: ' + e.action);
+                });
+
+                $('#example').on('click', '.open-modal', function () {
+                    var fileUrl = $(this).data('modal-src');
+                    $('#iframeContent').attr('src', fileUrl);
+                    $('#editPermissionModal').modal('show');
+                });
             }
-        ],
-        order: [[groupColumn, 'asc']]
-      });
-      $('#example').on('click', '.open-modal', function() {
-      var fileUrl = $(this).data('modal-src');
-      $('#iframeContent').attr('src', fileUrl);
-      $('#editPermissionModal').modal('show');
-      });
-    }
-    });
-
+        });
     </script>
+
 
   </body>
 </html>

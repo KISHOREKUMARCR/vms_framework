@@ -4,16 +4,16 @@
             "id": "9",
             "username": "kit1",
             "email": "kit1@gmail.com",
-            "password": "123456",
+            "password": "123456789",
             "device_number": "COSAI_VMS_456",
-            "live_switch": "Capture",
+            "live_switch": "Non-Capture",
             "time": "2023-11-07 16:18:50",
             "phone": "712348207",
             "address": "MADURAI",
             "state": "kerala",
             "zipcode": "456123",
             "country": "India",
-            "profile": "user-145.jpg",
+            "profile": "medium-shot-man-wearing-vr-glasses23.jpg",
             "kit_live_status": 0
         },
         {
@@ -30,13 +30,13 @@
             "zipcode": "12345",
             "country": "India",
             "profile": "ipcamera24.png",
-            "kit_live_status": 1
+            "kit_live_status": 0
         },
         {
             "id": "39",
             "username": "kit3",
             "email": "kit3@gmail.com",
-            "password": "123456",
+            "password": "asdfghjkl;",
             "device_number": "COSAI_VMS_542",
             "live_switch": "Non-Capture",
             "time": "2023-11-14 11:10:48",
@@ -46,7 +46,7 @@
             "zipcode": "123456",
             "country": "India",
             "profile": "ipcamera1.png",
-            "kit_live_status": 1
+            "kit_live_status": 0
         }
     ]
 }

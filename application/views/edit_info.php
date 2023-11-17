@@ -170,7 +170,7 @@
                             <?php echo form_error('raspi_pass', '<div class="text-danger">', '</div>'); ?>
                           </div>
 
-
+<!-- 
                           <h5 class="mb-3 font-weight-bold">VNC Viewer Detail's</h5>
 
 
@@ -184,7 +184,7 @@
                             <label for="address" class="form-label"> VNC Viewer Password:</label>
                             <input type="text" class="form-control" id="vnc_pass " name="vnc_pass"  value="<?php echo isset($vms_drive_data['vnc_password']) ? $vms_drive_data['vnc_password'] : ''; ?>" placeholder="vnc_pass" />
                             <?php echo form_error('vnc_pass', '<div class="text-danger">', '</div>'); ?>
-                          </div>
+                          </div> -->
 
                         </div>
 

@@ -101,7 +101,6 @@ float:inline-end;
                     <h5 class="card-title mb-0">Device Status</h5>
                     </div>
                     <div class="card-body">
-
                       <?php
                       if($kit_live_status==1){
                           echo '<button type="button" class="  rounded-button-01 mb-0 btn btn-success"><span style="font-size: 23px;">ACTIVE</span></button>';
@@ -371,7 +370,7 @@ float:inline-end;
                             color: '#333',
                             fontFamily: 'IBM Plex Sans',
                             formatter: function (val) {
-                            return (val / 1024).toFixed(2) + ' GB'; // Display values in GB on hover
+                            return (val / 1024).toFixed(2) + ' GB Used'; // Display values in GB on hover
                             }
                         },
                         total: {
@@ -381,7 +380,7 @@ float:inline-end;
                             label: 'RAM',
                             formatter: function (w) {
                             return (
-                                ((usedRamMemoryMB / totalRamMemoryMB) * 100).toFixed(2) + '%'
+                                ((usedRamMemoryMB / totalRamMemoryMB) * 100).toFixed(2) + ' GB Used'
                             );
                         }
                         }

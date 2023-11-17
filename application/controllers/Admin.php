@@ -218,7 +218,7 @@ class Admin extends CI_Controller{
           $client_id = $this->input->get('id');
           $vms_users_data = $this->User_model->getVmsUsersData($client_id);
           $login_data = array(
-          'email' => $vms_users_data['email'],
+          'device_number' => $vms_users_data['device_number'],
           'password' => $vms_users_data['password'],
           );
           $result = $this->User_model->check_login($login_data);
@@ -249,7 +249,7 @@ class Admin extends CI_Controller{
     public function logout(){
         $this->session->unset_userdata('user_data');
         $this->session->sess_destroy();
-        redirect('admin');
+        redirect('user');
 
     }
 }

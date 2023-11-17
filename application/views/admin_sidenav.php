@@ -10,7 +10,6 @@
           <li class="nav-item navbar-dropdown dropdown-user dropdown">
             <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
               <div class="avatar avatar-online">
-
                 <img src="<?php echo base_url();?>assets/img/cosai.png" alt='cosai' class="rounded-circle" />
               </div>
             </a>

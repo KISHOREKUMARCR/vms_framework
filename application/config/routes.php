@@ -58,6 +58,7 @@ $route['dashboard']="User/dashboard";
 $route['live_view']='User/live_view';
 $route['report']='User/report';
 
+$route['change_pass']='User/change_pass';
 $route['edit_info']='User/edit_info';
 $route['user_profile']='User/user_profile';
 $route['logout1']='User/logout1';
@@ -77,3 +78,4 @@ $route['api/getstream']='api/getstream';
 $route['api/demostring']='api/demostring';
 
 $route['cloud_info']='Cloudfile';
+

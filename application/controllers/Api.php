@@ -79,7 +79,13 @@ class Api extends CI_Controller{
                 if (!file_exists($folderPath)){
                   mkdir($folderPath,0777,true);
                 }
-                $imagePath = $folderPath . 'frame1.jpeg';
+
+                $originalString = "FRAMES_";
+                $randomNumber = rand(1, 5);
+                $finalString = $originalString . $randomNumber .'.jpeg';
+
+
+                $imagePath = $folderPath . $finalString;
                 file_put_contents($imagePath, $imageData);
 
               }
