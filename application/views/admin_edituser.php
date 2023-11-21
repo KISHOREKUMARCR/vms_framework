@@ -165,6 +165,28 @@ $client_id=$vms_users_data['id'];
 
 
 
+<div class="mb-3 col-md-6">
+<label for="private_key" class="form-label">Private Key</label>
+<textarea class="form-control" id="private_key" name="private_key" placeholder="Private Key"><?php echo isset($vms_drive_data['private_key']) ? $vms_drive_data['private_key'] : ''; ?></textarea>
+<?php echo form_error('private_key', '<div class="text-danger">', '</div>'); ?>
+</div>
+
+<div class="mb-3 col-md-6">
+<label for="client_email" class="form-label">Client Email</label>
+<input type="text" class="form-control" id="client_email" name="client_email" value="<?php echo isset($vms_drive_data['client_email']) ? $vms_drive_data['client_email'] : ''; ?>" placeholder="Client Email" />
+<?php echo form_error('client_email', '<div class="text-danger">', '</div>'); ?>
+</div>
+
+<div class="mb-3 col-md-6">
+<label for="client_id" class="form-label">Client ID</label>
+<input type="text" class="form-control" id="cloud_client_id" name="cloud_client_id" value="<?php echo isset($vms_drive_data['cloud_client_id']) ? $vms_drive_data['cloud_client_id'] : ''; ?>" placeholder="Client ID" />
+<?php echo form_error('cloud_client_id', '<div class="text-danger">', '</div>'); ?>
+</div>
+
+                          <!-- ########################################################################################## -->
+
+
+
                           <div class="mb-3 col-md-6">
                             <label for="address" class="form-label">Cloud Folder Id </label>
                             <input type="text" class="form-control" id="google_drive_folderid" name="google_drive_folderid"  value="<?php echo isset($vms_drive_data['cloud_folder_id']) ? $vms_drive_data['cloud_folder_id'] : ''; ?>" placeholder="CLOUD FOLDER ID" />

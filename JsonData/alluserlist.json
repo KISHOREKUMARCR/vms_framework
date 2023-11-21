@@ -14,7 +14,7 @@
             "zipcode": "456123",
             "country": "India",
             "profile": "medium-shot-man-wearing-vr-glasses23.jpg",
-            "kit_live_status": 0
+            "kit_live_status": 1
         },
         {
             "id": "38",
@@ -45,7 +45,7 @@
             "state": "tamilnadu",
             "zipcode": "123456",
             "country": "India",
-            "profile": "ipcamera1.png",
+            "profile": "medium-shot-man-wearing-vr-glasses25.jpg",
             "kit_live_status": 0
         }
     ]

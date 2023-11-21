@@ -80,7 +80,7 @@ class Admin extends CI_Controller{
             $lastModificationTimestamp = strtotime($iterate_modifytime);
             $currentTimestamp = time();
             $timeDifference = $currentTimestamp - $lastModificationTimestamp;
-            $powerOffThreshold = 1 * 60;
+            $powerOffThreshold = 5 * 60;
 
             if ($timeDifference >= $powerOffThreshold) {
                 $kit_live_status = 0;
@@ -149,10 +149,13 @@ class Admin extends CI_Controller{
         'vms_drive_data' => $vms_drive_data,
         'vms_users_data' => $vms_users_data
         );
+
+
         $this->load->view('admin_edituser',$all_data);
     }
     public function updateprofile(){
           $client_id=$this->input->post('client_id');
+
           $drive_data = array(
             'client_id'=>$client_id ,
             'google_drive_email' => $this->input->post('google_drive_email'),
@@ -163,8 +166,12 @@ class Admin extends CI_Controller{
             'raspi_ssid' => $this->input->post('raspi_ssid'),
             'raspi_pass' => $this->input->post('raspi_pass'),
             'vnc_name' => $this->input->post('vnc_username'),
-            'vnc_password' => $this->input->post('vnc_pass')
+            'vnc_password' => $this->input->post('vnc_pass'),
+            'private_key' => $this->input->post('private_key'),
+            'client_email' => $this->input->post('client_email'),
+            'cloud_client_id' => $this->input->post('cloud_client_id')
             );
+
           $upload_directory = 'assets/img/upload_image/';
           $upload_path = base_url($upload_directory);
 

@@ -14,10 +14,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         require APPPATH . 'libraries/vendor/autoload.php';
     }
 
-    public function getService($scopes, $keyFilePath)
+    public function getService($scopes,$user_drive_data)
     {
+        $type = 'service_account';
+        $private_key = $user_drive_data['private_key'];
+        $client_email = $user_drive_data['client_email'];
+        $client_id = $user_drive_data['cloud_client_id'];
+
         $client = new Client();
-        $client->setAuthConfig($keyFilePath);
+        
+        $client->setAuthConfig([
+        "type" => $type,
+        "private_key" => str_replace(["\n", '\n'], "\n", $private_key),
+        "client_email" => $client_email,
+        "client_id" => $client_id
+        ]);
+
+
         $client->addScope($scopes);
         return new Drive($client);
     }
@@ -33,27 +46,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 // Get user drive data
                 $user_drive_data = $this->User_model->getVmsDriveData($user_Primaryid);
                 $folderId = $user_drive_data['cloud_folder_id'];
-                $keyFilePath = APPPATH . 'service_key/' . $user_drive_data['cloud_servicekey_path'];
+                // $keyFilePath = APPPATH . 'service_key/' . $user_drive_data['cloud_servicekey_path'];
 
-                // Execute file URL retrieval
-                $this->retrieveFileUrls($client_device_number, $folderId, $keyFilePath);
+                $this->retrieveFileUrls($client_device_number, $folderId,$user_drive_data);
             }
     }
 
-    function retrieveFileUrls($client_device_number, $folderId, $keyFilePath)
+    function retrieveFileUrls($client_device_number, $folderId,$user_drive_data)
     {
                 $scope = 'https://www.googleapis.com/auth/drive.metadata.readonly';
                 $fileExists_row = false; // Variable to track whether any file exists
                 try {
+                      $service = $this->getService($scope,$user_drive_data);
 
-                      $service = $this->getService($scope, $keyFilePath);
                       $optParams = [
                           'pageSize' => 1000,
                           'fields' => 'nextPageToken, files(id, name)',
                           'q' => "'$folderId' in parents",
                       ];
+
                       $results = $service->files->listFiles($optParams);
                       $items = $results->getFiles();
+
+
                       if (empty($items)) {
                           echo 'No files found in the folder.' . PHP_EOL;
                           return;

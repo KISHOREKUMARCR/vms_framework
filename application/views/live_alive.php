@@ -5,7 +5,7 @@ date_default_timezone_set('Asia/Kolkata');
 $lastModificationTimestamp = strtotime($update_time);
 $currentTimestamp = time();
 $timeDifference = $currentTimestamp - $lastModificationTimestamp;
-$powerOffThreshold = 1 * 60;
+$powerOffThreshold = 5 * 60;
 if ($timeDifference >= $powerOffThreshold) {
 $kit_live_status=0;
 } else {
@@ -82,7 +82,7 @@ $kit_live_status=1;
                 else{
                   ?>
                   <div>
-                    <h3 >After clicking, wait for 5 seconds</h3>
+                    <h3 >After clicking, wait for 10 seconds</h3>
                       <button id="myButton"  class="btn btn-primary  mb-4"  value="Capture">Capture</button>
                       <?php  $user_deviceId=$user_data->device_number;
                         // Get the latest modified image in the folder
@@ -142,7 +142,7 @@ $(document).ready(function () {
         setTimeout(function () {
           location.reload();
           $('#myButton').prop('disabled', false)
-        }, 5000);
+        }, 10000);
       },
       error: function (xhr, status, error) {
         console.error(error);

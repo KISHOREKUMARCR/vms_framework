@@ -81,7 +81,7 @@ class Api extends CI_Controller{
                 }
 
                 $originalString = "FRAMES_";
-                $randomNumber = rand(1, 5);
+                $randomNumber = rand(1, 10);
                 $finalString = $originalString . $randomNumber .'.jpeg';
 
 
